@@ -59,8 +59,11 @@ for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.${plat}; do
 done
 
 
-# Set LSCOLORS
-eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
+# Enable color support, if available
+if [ -x /usr/bin/dircolors ]; then
+  DIRCOLORS_FILE="${DOTFILES_DIR}/system/.dir_colors"
+  eval "$(dircolors "$DIRCOLORS_FILE")"
+fi
 
 
 # Hook for machine-specific extra/custom stuff (not committed to Git)
