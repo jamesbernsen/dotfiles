@@ -1,0 +1,8 @@
+# .bashrc for James Bernsen
+# https://github.com/jamesbernsen/dotfiles
+#
+# Credits:
+#   https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile
+
+# Prefer simplicity... keep one profile 
+[ -n "$PS1" ] && source ~/.bash_profile;

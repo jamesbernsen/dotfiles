@@ -1,15 +1,14 @@
 - clean: ['~']
 
+- defaults:
+    link:
+      create: false
+      relink: false
+      force: false
+
 - link:
     ~/.bash_profile:
-        path: bash_profile
-        create: false
-        relink: false
-        force: false
+        path: runcom/bash_profile
     ~/.bashrc:
-        path: bashrc
-        create: false
-        relink: false
-        force: false
-
+        path: runcom/bashrc
 

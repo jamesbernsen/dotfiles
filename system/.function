@@ -1,0 +1,5 @@
+# Helper function for sourcing scripts
+sourcefile() {
+  [[ -f "$1" && -r "$1" ]] && source "$1"
+}
+
