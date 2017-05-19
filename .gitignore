@@ -1,5 +1,2 @@
 # Don't accidentally store secrets in Git
 aws/credentials
-
-# Don't commit the 'extra' directory
-extra/
