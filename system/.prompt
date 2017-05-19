@@ -93,7 +93,7 @@ bash_prompt_command() {
 
   # JRB TODO: Smarter test of Unicode character capabilities...
   if [[ $PLATFORM == "Cygwin" ]]; then
-    P_ANGLE=">"
+    P_ANGLE="►"
   else
     # Heavy Right-Pointing Angle Bracket Ornament (U+2771)
     P_ANGLE="❯"
