@@ -11,4 +11,6 @@
         path: runcom/bash_profile
     ~/.bashrc:
         path: runcom/bashrc
+    ~/.gitconfig:
+        path: git/.gitconfig
 
