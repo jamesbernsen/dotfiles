@@ -1,0 +1,12 @@
+[user]
+	name = James Bernsen
+[alias]
+	lg = log --graph --oneline --decorate
+	lga = log --graph --oneline --decorate --all
+	lola = !git lol --all && 0
+	st = status -sb
+[core]
+	autocrlf = input
+	editor = vim
+[push]
+	default = simple
