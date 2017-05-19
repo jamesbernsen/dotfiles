@@ -1,0 +1,4 @@
+# Don't commit anything in 'extra' (except the directory itself)
+*
+# Except this file
+!.gitignore
