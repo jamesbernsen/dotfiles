@@ -1,16 +1,19 @@
 - clean: ['~']
 
 - defaults:
-    link:
-      create: false
-      relink: false
-      force: false
+  link:
+    create: true
+    relink: false
+    force: false
 
 - link:
-    ~/.bash_profile:
-        path: runcom/bash_profile
-    ~/.bashrc:
-        path: runcom/bashrc
-    ~/.gitconfig:
-        path: git/.gitconfig
+  ~/.bash_profile:
+    path: runcom/bash_profile
+  ~/.bashrc:
+    path: runcom/bashrc
+
+  ~/.aws/config:
+    path: aws/config
+  ~/.gitconfig:
+    path: git/.gitconfig
 

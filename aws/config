@@ -1,0 +1,5 @@
+[profile dailyCount]
+region = us-east-1
+
+[profile itservices]
+region = us-east-1
