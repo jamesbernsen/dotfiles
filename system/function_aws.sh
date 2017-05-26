@@ -1,1 +1,0 @@
-../../python/aws-get-token/bash_func.sh

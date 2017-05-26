@@ -15,4 +15,6 @@
         path: aws/config
     ~/.gitconfig:
         path: git/gitconfig
-
+    ./system/function_aws.sh:
+        path: ~/python/aws-get-token/bash_func.sh
+        force: true
