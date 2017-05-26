@@ -28,3 +28,6 @@ alias la='ls -A'
 if [ -x /usr/bin/notify-send ]; then
   alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 fi
+
+# Add a "journal" alias for logging system changes
+alias journal='date >> ~/admin_journal.txt; $EDITOR ~/admin_journal.txt'
