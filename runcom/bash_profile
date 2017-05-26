@@ -47,21 +47,21 @@ DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
 
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,completion,grep,prompt,custom}; do
+for DOTFILE in "$DOTFILES_DIR"/system/{function,function_*,path,env,alias,completion,grep,prompt,custom}.sh; do
   [ -f "$DOTFILE" ] && echo "Sourcing ${DOTFILE#$HOME/} ..." && source "$DOTFILE"
 done
 
 
 # Platform-specific files
 plat=$(tolower $PLATFORM) # requires function from .function_text
-for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.${plat}; do
+for DOTFILE in "$DOTFILES_DIR"/system/{env,alias,function}.${plat}.sh ; do
   [ -f "$DOTFILE" ] && echo "Sourcing ${DOTFILE#$HOME/} ..." && source "$DOTFILE"
 done
 
 
 # Enable color support, if available
 if [ -x /usr/bin/dircolors ]; then
-  DIRCOLORS_FILE="${DOTFILES_DIR}/system/.dir_colors"
+  DIRCOLORS_FILE="${DOTFILES_DIR}/system/dir_colors"
   eval "$(dircolors "$DIRCOLORS_FILE")"
 fi
 

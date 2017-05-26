@@ -14,5 +14,5 @@
     ~/.aws/config:
         path: aws/config
     ~/.gitconfig:
-        path: git/.gitconfig
+        path: git/gitconfig
 
