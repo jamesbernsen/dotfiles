@@ -2,13 +2,30 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+# Multi-target configuration
+# Credit: https://github.com/anishathalye/dotbot/pull/11#issuecomment-73082152
+DEFAULT_CONFIG_PREFIXES="default"
+CONFIG_SUFFIX=".conf.yaml"
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Detect platform/OS and set PLATFORM variable
+. ${BASEDIR}/platforms/detect.sh
+
+# Convert platform to lowercase
+. ${BASEDIR}/system/function_text.sh
+plat=$(tolower $PLATFORM)
+
+# If a platform-specific install exists, then add it to the default list
+if [ -f "${BASEDIR}/${plat}${CONFIG_SUFFIX}" ] ; then
+  DEFAULT_CONFIG_PREFIXES="${DEFAULT_CONFIG_PREFIXES} $plat"
+fi
+
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+for conf in ${DEFAULT_CONFIG_PREFIXES} ${@}; do
+  "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${conf}${CONFIG_SUFFIX}"
+done

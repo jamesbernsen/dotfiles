@@ -1,0 +1,7 @@
+BoldAsFont=-1
+FontHeight=12
+Transparency=high
+OpaqueWhenFocused=yes
+Columns=100
+Rows=30
+Term=xterm-256color

@@ -13,19 +13,6 @@
 echo "Sourcing .bash_profile ..."
 
 
-# Detect PLATFORM
-UNAME_S="$(uname -s)"
-case $UNAME_S in
-  'Linux')     PLATFORM='Linux'   ;;
-  CYGWIN*)     PLATFORM='Cygwin'  ;;
-  'WindowsNT') PLATFORM='Windows' ;;
-  'Darwin')    PLATFORM='MacOS'   ;;
-  'SunOS')     PLATFORM='Solaris' ;;
-  *)           PLATFORM='other'   ;;
-esac
-echo "Identified platform ($UNAME_S) as \"$PLATFORM\""
-
-
 # Resolve DOTFILES_DIR (assuming ~/dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 READLINK=$(command -v greadlink || command -v readlink)
 CURRENT_SCRIPT=$BASH_SOURCE
@@ -41,6 +28,10 @@ else
 fi
 
 
+# Detect platform/OS and set PLATFORM variable
+. $DOTFILES_DIR/platforms/detect.sh
+
+
 # Read cache
 DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
 [ -f "$DOTFILES_CACHE" ] && . "$DOTFILES_CACHE"
@@ -53,7 +44,7 @@ done
 
 
 # Platform-specific files
-plat=$(tolower $PLATFORM) # requires function from .function_text
+plat=$(tolower $PLATFORM) # requires function from function_text.sh
 for DOTFILE in "$DOTFILES_DIR"/system/{env,alias,function}.${plat}.sh ; do
   [ -f "$DOTFILE" ] && echo "Sourcing ${DOTFILE#$HOME/} ..." && source "$DOTFILE"
 done
@@ -80,5 +71,5 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH UNAME_S DOTFILE EXTRAFILE
 
 
 # Export
-export PLATFORM DOTFILES_DIR EXTRA_DIR
+export DOTFILES_DIR EXTRA_DIR
 

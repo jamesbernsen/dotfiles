@@ -1,0 +1,11 @@
+- clean: ['~']
+
+- defaults:
+    link:
+      create: true
+      relink: false
+      force: false
+
+- link:
+    ~/.minttyrc:
+        path: platforms/cygwin/minttyrc
