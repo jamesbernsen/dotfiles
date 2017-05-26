@@ -1,0 +1,2 @@
+# Don't commit symlinks that are installed by dotbot
+function_aws.sh
