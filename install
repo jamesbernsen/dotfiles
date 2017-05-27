@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Multi-target configuration
 # Credit: https://github.com/anishathalye/dotbot/pull/11#issuecomment-73082152
 DEFAULT_CONFIG_PREFIXES="default"
@@ -23,6 +25,9 @@ fi
 
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
+
+# Don't exit the install if one of our configuration files has an error
+set +e
 
 for conf in ${DEFAULT_CONFIG_PREFIXES} ${@}; do
   echo "Installing ${conf} configuration..."
