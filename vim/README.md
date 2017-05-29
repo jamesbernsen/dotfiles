@@ -18,3 +18,7 @@ into git submodules so that they can be more easily kept up-to-date.
     cd ~/dotfiles
     git submodule deinit -f vim/bundle/bundlename
     git rm -rf vim/bundle/bundlename
+
+## Fonts ##
+If the vim status bar seems to be missing characters, install the Ubuntu fonts 
+that are found in ~/dotfiles/fonts

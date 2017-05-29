@@ -171,6 +171,15 @@ _ProVim:_
 | object         | Block `{}` or `[]` or `<>` or `()` | Selects content inside/around a block (excludes whitespace)
 
 
+## Searching ##
+
+| Command     | Description
+| ----------- | ---
+| /*regex*    | Search for text using regular expression pattern *regex*
+| N &#124; n  | Find the next match (*before* or *after* the cursor, respectively)
+| :noh        | Clear match highlighting for the current search
+
+
 ## Buffers ##
 
 _ProVim:_
