@@ -4,6 +4,7 @@ umask 022
 # Set vim-like shell
 export EDITOR=vim
 export VISUAL=${EDITOR}
+set -o vi
 
 
 # don't put duplicate lines or lines starting with space in the history.
