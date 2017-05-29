@@ -1,0 +1,4 @@
+# Don't commit anything in this directory (except the directory itself)
+*
+# And this file
+!.gitignore
