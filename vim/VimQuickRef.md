@@ -110,8 +110,8 @@ _ProVim:_
 | D             | Cut from the cursor to the end of the line (same as d$)
 | P &#124; p    | Paste content (*before* or *after* the current cursor position, respectively)
 | | |
-| F &#124; f *char* | Find a character *char* (*before* or *after* the cursor, respectively), placing the cursor at that position
-| T &#124; t *char* | Find a character *char* (*before* or *after* the cursor, respectively), placing the cursor beside it (to the *right* or *left* of it, respectively)
+| f &#124; F *char* | Find a character *char* (*forward* or *backward* from the cursor, respectively), placing the cursor at that position
+| t &#124; T *char* | Find a character *char* (*forward* or *backward* from the cursor, respectively), placing the cursor beside it (to the *left* or *right* of it, respectively)
 | | |
 | O &#124; o    | Create a new line (*before* or *after* the current cursor position, respectively) and change to INSERT mode
 | c {*motion*}  | Change the character (or selection) and change to INSERT mode
@@ -173,28 +173,46 @@ _ProVim:_
 
 ## Searching ##
 
-| Command     | Description
-| ----------- | ---
-| /*regex*    | Search for text using regular expression pattern *regex*
-| N &#124; n  | Find the next match (*before* or *after* the cursor, respectively)
-| :noh        | Clear match highlighting for the current search
+| Command               | Description
+| --------------------- | ---
+| / &#124; ? *regex*    | Search for text using the [Vim regular expression](http://vimregex.com) pattern *regex* (*forward* or *backward* from the cursor, respectively)
+| n &#124; N            | Find the next match (*forward* or *backward* from the cursor, respectively)
+| \* &#124; #           | Search for the word on which the cursor currently rests (*forward* or *backward*, respectively)
+| :noh                  | Clear match highlighting for the current search
+| [*range*]s/*pattern*/*replacement*/[*flags*] | Within *range*, search for text matching *pattern* and replace it with *replacement*. The range `%` would indicate the entire buffer.
 
 
-## Buffers ##
+## Buffers, Windows, and Tabs ##
 
 _ProVim:_
 > When you open a file in Vim and start editing it, you are, in fact, only editing a "copy" of the file. The file has actually been opened into a "buffer," and that buffer is just a chunk of memory allocated to holding a copy of the file you wanted to edit.
 >
 > Buffers have multiple states: active, hidden, and inactive. If the buffer is currently visible inside the viewport, it is considered to be active. If the buffer is not visible, it's considered hidden. If you have an empty buffer (i.e., it has no file read in), and it's not visible, the buffer is considered inactive.
 
-| Command | Description
-| ------- | ---
-| :sp     | Split the current buffer into multiple windows
-| :bn     | Move to the next buffer
-| :bp     | Move to the previous buffer
-| :b*n*   | Move to the *n*th buffer
-| :ls     | List all of the available buffers
-| :b#     | Switch to the alternate (last) buffer
+| Command           | Description
+| ----------------- | ---
+| :bn               | Move to the next buffer
+| :bp               | Move to the previous buffer
+| :b*n*             | Move to the *n*th buffer
+| :ls               | List all of the available buffers
+| :b#               | Switch to the alternate (last) buffer
+| :bd #             | Delete buffer with number # (using numbers from :ls command)
+| :bufdo *cmd*      | Perform a command (*cmd*) on all buffers
+| |
+| :sb *#*           | Create a split with an existing buffer (identified by *#*)
+| :sp               | Horizontally split the current buffer into multiple windows
+| :vs               | Vertically split the current buffer into multiple windows
+| |
+| :tabnew           | Open a new tab
+| :tabe *file*      | Edit a file in a new tab
+| gt &#124; :tabn   | Move to the next tab
+| gT &#124; :tabp   | Move to the previous tab
+| :tabc             | Close a tab
+| :tabmove *#*      | Move the current tab to the position indicated by *#*
+| :tabonly          | Close all tabs except the current one
+| |
+| `<C-w>` T         | Move the current window to its own tab
+
 
 ## File Modifiers ##
 In place of most command arguments that take a *path*, it's possible to substitute a command modifier.
