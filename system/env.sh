@@ -44,3 +44,6 @@ if ! shopt -oq posix; then
 fi
 
 
+# Set personal GitHub variables
+export GITHUB_USER=jamesbernsen
+
