@@ -198,11 +198,11 @@ _ProVim:_
 | :b#               | Switch to the alternate (last) buffer
 | :bd #             | Delete buffer with number # (using numbers from :ls command)
 | :bufdo *cmd*      | Perform a command (*cmd*) on all buffers
-| |
+| | |
 | :sb *#*           | Create a split with an existing buffer (identified by *#*)
 | :sp               | Horizontally split the current buffer into multiple windows
 | :vs               | Vertically split the current buffer into multiple windows
-| |
+| | |
 | :tabnew           | Open a new tab
 | :tabe *file*      | Edit a file in a new tab
 | gt &#124; :tabn   | Move to the next tab
@@ -210,7 +210,7 @@ _ProVim:_
 | :tabc             | Close a tab
 | :tabmove *#*      | Move the current tab to the position indicated by *#*
 | :tabonly          | Close all tabs except the current one
-| |
+| | |
 | `<C-w>` T         | Move the current window to its own tab
 
 
