@@ -18,7 +18,6 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
 ### And Then Manually Install (ugh) ###
 These items still require a manual install (for now)
 * Ubuntu Mono derivative Powerline fonts [(in dotfiles/fonts)](fonts)
-* [Ack](http://beyondgrep.com/install/)
 
 
 ## Additional resources
