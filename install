@@ -23,8 +23,9 @@ if [ -f "${BASEDIR}/${plat}${CONFIG_SUFFIX}" ] ; then
   DEFAULT_CONFIG_PREFIXES="${DEFAULT_CONFIG_PREFIXES} $plat"
 fi
 
+# Update all git submodules (including dotbot)
 cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
+git submodule update --init --recursive
 
 # Don't exit the install if one of our configuration files has an error
 set +e
