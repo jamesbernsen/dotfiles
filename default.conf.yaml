@@ -11,6 +11,8 @@
         path: runcom/bash_profile
     ~/.bashrc:
         path: runcom/bashrc
+    ~/bin:
+        path: bin
     ~/.aws/config:
         path: aws/config
     ~/.gitconfig:
