@@ -16,7 +16,9 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
     ./install foo
 
 ### And Then Manually Install (ugh) ###
-These items still require a manual install (for now)
+These items (for now) require a manual check to see if they are installed, and if not, to install them.
+* [Curl](https://curl.haxx.se/)
+* [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 * Ubuntu Mono derivative Powerline fonts [(in dotfiles/fonts)](fonts)
 
 
