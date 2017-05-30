@@ -15,6 +15,8 @@
         path: aws/config
     ~/.gitconfig:
         path: git/gitconfig
+    ~/.gitignore:
+        path: git/gitignore
     ~/.vim:
         path: vim
     ~/.vimrc:
