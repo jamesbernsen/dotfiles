@@ -12,7 +12,7 @@
     ~/.bashrc:
         path: runcom/bashrc
     ~/bin:
-        path: bin
+        path: extra/bin
     ~/.aws/config:
         path: aws/config
     ~/.gitconfig:
