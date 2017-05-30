@@ -46,3 +46,6 @@
 [submodule "vim/bundle/vim-bookmarks"]
 	path = vim/bundle/vim-bookmarks
 	url = https://github.com/MattesGroeger/vim-bookmarks
+[submodule "vim/bundle/rainbow_parentheses.vim"]
+	path = vim/bundle/rainbow_parentheses.vim
+	url = https://github.com/kien/rainbow_parentheses.vim
