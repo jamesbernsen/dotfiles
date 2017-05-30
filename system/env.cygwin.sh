@@ -38,3 +38,6 @@ then
   unset PRESET_CYGWIN
 fi
 
+# Use Solarized Dark theme
+sourcefile $DOTFILES_DIR/platforms/cygwin/themes/mintty-colors-solarized/sol.dark
+
