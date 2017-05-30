@@ -43,3 +43,6 @@
 [submodule "vim/bundle/camelcasemotion"]
 	path = vim/bundle/camelcasemotion
 	url = https://github.com/vim-scripts/camelcasemotion
+[submodule "vim/bundle/vim-bookmarks"]
+	path = vim/bundle/vim-bookmarks
+	url = https://github.com/MattesGroeger/vim-bookmarks
