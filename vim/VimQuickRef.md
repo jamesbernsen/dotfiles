@@ -256,9 +256,11 @@ Commands frequently used when working with registers:
 
 | Command                  | Description
 | -------------------------| ---
-| q {*reg*} {*commands*} q | Record into register *reg* a macro consisting of *commands*
+| q {*reg*} {*commands*} q | Record into register *reg* (*q* is commonly used) a macro consisting of *commands*
 | [*n*] @ {*reg*}          | Execute the macro stored in register *reg*, *n* times
 | [*n*] @@                 | Execute a macro from the last-executed register, *n* times, *n* times
+| `<F3>`                   | Save a macro (from the *q* register) to a file (requires [MARVIM](http://www.vim.org/scripts/script.php?script_id=2154) plugin)
+| `<F2>`                   | Execute a saved macro from a file (requires [MARVIM](http://www.vim.org/scripts/script.php?script_id=2154) plugin)
 
 Note: You can append to an existing stored macro by recording with the uppercase version of its named register. It's also possible to edit a macro by writing it to the buffer (:put *reg-id*), editing it, and yanking it back into a register.
 
