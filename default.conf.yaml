@@ -19,6 +19,8 @@
         path: git/gitconfig
     ~/.gitignore:
         path: git/gitignore
+    ~/.marvim:
+        path: marvim
     ~/.vim:
         path: vim
     ~/.vimrc:
