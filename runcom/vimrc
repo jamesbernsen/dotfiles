@@ -123,6 +123,7 @@ set colorcolumn=80
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 filetype plugin indent on " required by Pathogen Plugin Manager
+call pathogen#helptags()
 
 " Theme
 set background=dark
@@ -190,6 +191,11 @@ map <silent> e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
+
+" Modify key-bindings for vim-bookmarks
+nmap ]' <Plug>BookmarkNext
+nmap [' <Plug>BookmarkPrev
+
 " }}}
 
 " Mappings {{{
