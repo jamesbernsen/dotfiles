@@ -214,16 +214,6 @@ _ProVim:_
 | `<C-w>` T         | Move the current window to its own tab
 
 
-## File Modifiers ##
-In place of most command arguments that take a *path*, it's possible to substitute a command modifier.
-
-| Modifier  | Description
-| --------- | ---
-| %         | Filename of the current buffer
-| %:p       | Full path and filename of the current buffer
-| %:p:h     | Full path (minus "head", or filename) of the current buffer
-
-
 ## Registers ##
 Used for temporary data storage (and other neat tricks)
 
@@ -250,6 +240,31 @@ Commands frequently used when working with registers:
 | :put {*reg-id*}  | Write the contents of register *reg-id* to the buffer
 | `<C-r>` *reg-id* | **From the expression register or INSERT mode**: paste the content of the register identified by *reg-id*
 | `<C-r> =`        | **From INSERT mode**: enter the expression register
+
+
+## File Modifiers ##
+In place of most command arguments that take a *path*, it's possible to substitute a command modifier.
+
+| Modifier  | Description
+| --------- | ---
+| %         | Filename of the current buffer
+| %:p       | Full path and filename of the current buffer
+| %:p:h     | Full path (minus "head", or filename) of the current buffer
+
+
+## Marks ##
+Marks allow you to quickly return to a previously-marked location.
+
+| Command                  | Description
+| -------------------------| ---
+| m{a-zA-Z}                | Mark or unmark a location in the buffer (lowercase marks are file-local, uppercase marks are global)
+| ]' or ['                 | Move cursor to next (or *previous*, respectively) marked line position
+| ]\` or [\`               | Move cursor to next (or *previous*, respectively) marked line and column position
+| '{*mark*}                | Move cursor to the line of the indicated *mark*
+| \`{*mark*}               | Move cursor to the line and column of the indicated *mark*
+| :marks                   | Show all marks
+| :delmark{*marks*}        | Delete indicated *marks* (or all current-buffer marks if `!` is used)
+Note: The [vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks) bundle overrides some of Vim's mark behavior to provide per-line bookmark toggling (`mm`) and quickfix-window access (`ma`) to all bookmarks.
 
 
 ## Macros ##
