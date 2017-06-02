@@ -131,8 +131,6 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 " CtrlP
-map <leader>t <C-p>
-map <leader>y :CtrlPBuffer<cr>
 let g:ctrlp_show_hidden=1
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_max_height=30
@@ -212,36 +210,8 @@ nmap [' <Plug>BookmarkPrev
 " to map something in just NORMAL mode use :nmap or :nnoremap
 " to map something in just VISUAL mode use :vmap or :vnoremap
 
-" Clear search buffer
-:nnoremap § :nohlsearch<cr>
-
 " Command to use sudo when needed
 cmap w!! %!sudo tee > /dev/null %
-
-" File System Explorer (in horizontal split)
-map <leader>. :Sexplore<cr>
-
-" Running Tests...
-" See also <https://gist.github.com/8114940>
-
-" Run currently open RSpec test file
-map <Leader>rf :w<cr>:!rspec % --format nested<cr>
-
-" Run current RSpec test
-" RSpec is clever enough to work out the test to run if the cursor is on any line within the test
-map <Leader>rl :w<cr>:exe "!rspec %" . ":" . line(".")<cr>
-
-" Run all RSpec tests
-map <Leader>rt :w<cr>:!rspec --format nested<cr>
-
-" Run currently open cucumber feature file
-map <Leader>cf :w<cr>:!cucumber %<cr>
-
-" Run current cucumber scenario
-map <Leader>cl :w<cr>:exe "!cucumber %" . ":" . line(".")<cr>
-
-" Run all cucumber feature files
-map <Leader>ct :w<cr>:!cucumber<cr>
 
 " Tmux style window selection
 map <Leader>ws :ChooseWin<cr>
