@@ -111,7 +111,7 @@ UNAME_S="$(uname -s)"
 # Cygwin fork() on Windows 7 is SLOOOOOOW
 if [ $UNAME_S == "CYGWIN_NT-6.1" ]; then
   # Fast prompt
-  export PS1="\e[0;32m\u\e[m@\e[0;36m\h\e[m \e[0;33m\w\e[m\n> "
+  export PS1="\e[0;32m\u\e[m@\e[0;36m\h\e[m \e[0;33m\w\e[m\n► "
 else
   _bash_prompt_config
   unset _bash_prompt_config
