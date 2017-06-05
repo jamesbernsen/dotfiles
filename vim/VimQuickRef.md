@@ -8,7 +8,7 @@ _ProVim:_
 | Command / Key         | Description
 | --------------------- | ---
 | :h *command*          | Get help on a Vim command
-| `<C-i>` or `<C-]>`    | "Jump *In*" - Follow a "tag" (hyperlink; indicated by a plus sign)
+| `<C-i>` or `<C-]>`    | "Jump *In*" - Follow a [tag](https://ctags.io/) (hyperlink; indicated by a plus sign) 
 | `<C-o>` or `<C-t>`    | "Jump *Out*" - Return to previous location after following a tag.
 | gx                    | Open the URL under the cursor in a web browser
 | | |
@@ -125,6 +125,9 @@ _ProVim:_
 | ~                 | Change the case of a letter
 | | |
 | .                 | Repeats the last INSERT edit
+| J                 | Join the current line with the one following it
+| `<C-a>` / `<C-x>` | Increment / decrement the number under the cursor
+
 
 
 #### Motions ####
@@ -290,8 +293,25 @@ Note: You can append to an existing stored macro by recording with the uppercase
 | :nmap            | List keybindings for NORMAL mode
 | :vmap            | List keybindings for VISUAL mode
 | :imap            | List keybindings for INSERT mode
+| :cmap            | List keybindings for COMMAND-LINE mode
 | :map             | List keybindings for all modes
 | :h index         | List default keybindings (in the help)
+| :set ft?         | List the syntax filetype used in the current buffer
+
+
+## Shell and Terminal ##
+
+| Command                | Description
+| ---------------------- | ---
+| `<C-z>`                | Suspend vim and drop to the shell (return with `fg`)
+| :[*range*]!{*command*} | Pass *command* to the shell and view the results; if a *range* is provided, the indicated text will be passed as standard input to the *command*
+
+
+## Invoking Vim ##
+
+| Shell Command            | Description
+| ------------------------ | ---
+| {*command*} &#124; vim - | Pipe the output of *command* into vim as buffer content
 
 
 ## .vimrc ##
