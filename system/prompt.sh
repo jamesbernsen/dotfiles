@@ -97,7 +97,7 @@ bash_prompt_command() {
   else
     # Heavy Right-Pointing Angle Bracket Ornament (U+2771)
     P_ANGLE="❯"
-  fi 
+  fi
 
   PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW}\n${P_ANGLE} ${P_RESET}"
 }
@@ -107,8 +107,17 @@ parse_git_branch() {
   if [ "$OUT" != "" ]; then echo " $OUT"; fi
 }
 
-_bash_prompt_config
-unset _bash_prompt_config
+UNAME_S="$(uname -s)"
+# Cygwin fork() on Windows 7 is SLOOOOOOW
+if [ $UNAME_S == "CYGWIN_NT-6.1" ]; then
+  # Fast prompt
+  export PS1="\e[0;32m\u\e[m@\e[0;36m\h\e[m \e[0;33m\w\e[m\n> "
+else
+  _bash_prompt_config
+  unset _bash_prompt_config
 
-PROMPT_COMMAND=bash_prompt_command
+  PROMPT_COMMAND=bash_prompt_command
+fi
 
+# Clean up
+unset UNAME_S
