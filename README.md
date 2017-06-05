@@ -21,9 +21,12 @@ These items (for now) require a manual check to see if they are installed, and i
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 * Ubuntu Mono derivative Powerline fonts [(in dotfiles/fonts)](fonts)
 
-And security concerns prevent these items from residing in the repo:
+Security concerns prevent these items from residing in the repo:
 * SSH keys
 * AWS credentials file
+
+And (not required), but here's other stuff that I generally like to install:
+* [Universal Ctags](https://github.com/universal-ctags/ctags)
 
 ## Additional resources
 
