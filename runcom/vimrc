@@ -198,6 +198,9 @@ sunmap e
 nmap ]' <Plug>BookmarkNext
 nmap [' <Plug>BookmarkPrev
 
+" For vim-commentary, set comment characters for unrecognized filtypes
+autocmd FileType terraform setlocal commentstring=#\ %s
+
 " }}}
 
 " Mappings {{{
