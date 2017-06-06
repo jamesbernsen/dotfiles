@@ -248,6 +248,7 @@ autocmd FileType sh,cucumber,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 e
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.spv set filetype=php
 autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
+autocmd Bufread,BufNewFile *.erb set filetype=ruby " Chef templates
 
 " Create a 'scratch buffer' which is a temporary buffer Vim wont ask to save
 " http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
