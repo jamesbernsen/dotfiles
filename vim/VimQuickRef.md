@@ -32,11 +32,12 @@ _ProVim:_
 | :q!                   | Close the current buffer, ignoring any warning about loss of data
 | :qa                   | Close all buffers
 | :wqa                  | Write all buffers and close them all
+| ZZ                    | Write current buffer (if modified) and exit
 
 
 ### Cursor, Page, and Window Motion ###
 
-| Keystroke            | Mode Name
+| Keystroke            | Motion
 | -------------------- | ---
 | h                    | Moves the cursor left
 | j                    | Moves the cursor down
