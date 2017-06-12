@@ -9,3 +9,4 @@ Font=DejaVu Sans Mono for Powerline
 FontWeight=400
 FontIsBold=no
 
+ClicksPlaceCursor=yes
