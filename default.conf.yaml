@@ -21,6 +21,10 @@
         path: git/gitignore
     ~/.marvim:
         path: marvim
+    ~/.tmux:
+        path: tmux
+    ~/.tmux.conf:
+        path: runcom/tmux.conf
     ~/.vim:
         path: vim
     ~/.vimrc:

@@ -12,6 +12,13 @@
 # I like a little verbosity...
 echo "Sourcing .bash_profile ..."
 
+# Start tmux
+# Credit: https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
+# JRB NOTE: On Cygwin, tmux won't launch as Administrator when mintty does
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
 
 # Resolve DOTFILES_DIR (assuming ~/dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 READLINK=$(command -v greadlink || command -v readlink)
