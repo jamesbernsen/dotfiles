@@ -18,6 +18,8 @@ These items (for now) require a manual check to see if they are installed, and i
 * [Curl](https://curl.haxx.se/)
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 * (Cygwin) Deja Vu Sans Mono for Powerline fonts [(in dotfiles/fonts/deja-vu-sans-mono-ttf)](fonts/deja-vu-sans-mono-ttf)
+  - Open in Explorer
+  - Right-click on each font file and choose Install
 
 Security concerns prevent these items from residing in the repo:
 * SSH keys
