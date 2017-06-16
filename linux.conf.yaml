@@ -7,6 +7,8 @@
       force: false
 
 - link:
+    ~/.fonts/Droid+Sans+Mono+for+Powerline.otf:
+        path: fonts/droid-sans-mono-otf/Droid+Sans+Mono+for+Powerline.otf
     ~/.fonts/PowerlineSymbols.otf:
         path: fonts/powerline-symbols/PowerlineSymbols.otf
     ~/.config/fontconfig/conf.d/10-powerline-symbols.conf:
