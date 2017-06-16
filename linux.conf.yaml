@@ -1,0 +1,16 @@
+- clean: ['~']
+
+- defaults:
+    link:
+      create: true
+      relink: false
+      force: false
+
+- link:
+    ~/.fonts/PowerlineSymbols.otf:
+        path: fonts/powerline-symbols/PowerlineSymbols.otf
+    ~/.config/fontconfig/conf.d/10-powerline-symbols.conf:
+        path: fonts/powerline-symbols/10-powerline-symbols.conf
+
+- shell:
+  - fc-cache -vf ~/.fonts

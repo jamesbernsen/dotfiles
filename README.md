@@ -19,7 +19,8 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
 These items (for now) require a manual check to see if they are installed, and if not, to install them.
 * [Curl](https://curl.haxx.se/)
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
-* Ubuntu Mono derivative Powerline fonts [(in dotfiles/fonts)](fonts)
+* (Cygwin) Ubuntu Mono derivative Powerline fonts [(in dotfiles/fonts/ubuntu-mono-deriv)](fonts)
+* (Ubuntu) Ubuntu Mono derivative Powerline fonts [(in dotfiles/fonts)](fonts)
 
 Security concerns prevent these items from residing in the repo:
 * SSH keys
