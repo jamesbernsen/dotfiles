@@ -12,13 +12,6 @@
 # I like a little verbosity...
 echo "Sourcing .bash_profile ..."
 
-# Start tmux
-# Credit: https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
-# JRB NOTE: On Cygwin, tmux won't launch as Administrator when mintty does
-# if command -v tmux>/dev/null; then
-#   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-# fi
-
 
 # Resolve DOTFILES_DIR (assuming ~/dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 READLINK=$(command -v greadlink || command -v readlink)
@@ -38,6 +31,21 @@ fi
 # Detect platform/OS and set PLATFORM variable
 . $DOTFILES_DIR/platforms/detect.sh
 
+
+# Start tmux unless the user escapes via keypress
+# Credit: https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
+# JRB NOTE: On Cygwin, tmux won't launch as Administrator when mintty does
+#
+if command -v tmux>/dev/null; then
+  if [[ ! $TERM =~ screen && -z $TMUX ]] ; then
+    if ! $DOTFILES_DIR/system/escape-hatch.sh 3 ; then
+      echo "Starting tmux ..."
+      exec tmux
+    else
+      echo "Skipping tmux ..."
+    fi
+  fi
+fi
 
 # Read cache
 DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
