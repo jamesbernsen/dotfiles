@@ -31,7 +31,7 @@ fi
 
 # Need Bash 4 to use fractional time with read -t
 if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
-  printf "Bash 4 or higher required" >&2;
+  printf 'Bash 4 or higher required' >&2;
   exit 5;
 fi
 
@@ -45,6 +45,8 @@ if [[ -z $AWK_EX ]] ; then
 fi
 
 mult=10
+# Credit
+# https://unix.stackexchange.com/questions/40786/how-to-do-integer-float-calculations-in-bash-or-other-languages-frameworks
 frac=$($AWK_EX "BEGIN {print 1/$mult}")
 timeout=$($AWK_EX "BEGIN {print $timeout*$mult}")
 
