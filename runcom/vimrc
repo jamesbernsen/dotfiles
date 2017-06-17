@@ -221,7 +221,7 @@ autocmd FileType terraform setlocal commentstring=#\ %s
 cmap w!! %!sudo tee > /dev/null %
 
 " Tmux style window selection
-map <Leader>ws :ChooseWin<cr>
+map <Leader>q :ChooseWin<cr>
 " }}}
 
 " Commands {{{
