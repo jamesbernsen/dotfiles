@@ -10,3 +10,4 @@ FontWeight=400
 FontIsBold=no
 
 ClicksPlaceCursor=yes
+ThemeFile=solarized-dark

@@ -7,5 +7,9 @@
       force: false
 
 - link:
+    ~/.mintty/themes/solarized-dark:
+        path: platforms/cygwin/themes/mintty-colors-solarized/.minttyrc.dark
+    ~/.mintty/themes/solarized-light:
+        path: platforms/cygwin/themes/mintty-colors-solarized/.minttyrc.light
     ~/.minttyrc:
         path: platforms/cygwin/minttyrc
