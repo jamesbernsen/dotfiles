@@ -1,21 +1,28 @@
 # Enable color support aliases for ls
-LS_COLORS=`is-supported "ls --color" --color -G`
+COLOR_OPTS=`is-supported "ls --color" --color -G`
 LS_TIMESTYLEISO=`is-supported "ls --time-style=long-iso" --time-style=long-iso`
 LS_GROUPDIRSFIRST=`is-supported "ls --group-directories-first" --group-directories-first`
-alias ls="ls -hF $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
-unset LS_COLORS LS_TIMESTYLEISO LS_GROUPDIRSFIRST
+alias ls="ls -hF $COLOR_OPTS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+unset COLOR_OPTS LS_TIMESTYLEISO LS_GROUPDIRSFIRST
 
 
-# Enable color support aliases for grep tools
-GREP_COLORS=`is-supported "grep --color --help" --color`
-alias grep='grep $GREP_COLORS'
-unset GREP_COLORS
+# Enable color support alias for grep
+COLOR_OPTS=`is-supported "grep --color" --color`
+alias grep="grep $COLOR_OPTS"
+unset COLOR_OPTS
 
 
-# Enable color support aliases for grep tools
-DIFF_COLORS=`is-supported "diff --color --help" --color`
-alias diff='diff $DIFF_COLORS'
-unset DIFF_COLORS
+# Enable color support alias for diff
+COLOR_OPTS=`is-supported "diff --color" --color`
+alias diff="diff $COLOR_OPTS"
+unset COLOR_OPTS
+
+
+# Enable color support alias for less
+# less command needs a filename... use this file ($BASH_SOURCE)
+COLOR_OPTS=`is-supported "less -R $BASH_SOURCE" -R`
+alias less="less $COLOR_OPTS"
+unset COLOR_OPTS
 
 
 # More ls aliases

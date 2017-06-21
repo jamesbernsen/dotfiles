@@ -10,11 +10,18 @@ is-executable() {
 }
 
 
+# With a single argument ($1):
+#   Returns true if the command ($1) exits with success and prints nothing to
+#   stderr.
+# With multiple arguments ($1 $2 [$3])
+#   Returns $2 if the command ($1) exits with success and prints nothing to
+#   stderr, otherwise returns $3.
 is-supported() {
+  CMD_ERR="$($1 2>&1 > /dev/null)"
   if [ $# -eq 1 ]; then
-    if eval "$1" > /dev/null 2>&1; then true; else false; fi
+    if eval "$1" > /dev/null 2>&1 && [[ -z $CMD_ERR ]]; then true; else false; fi
   else
-    if eval "$1" > /dev/null 2>&1; then
+    if eval "$1" > /dev/null 2>&1 && [[ -z $CMD_ERR ]]; then
       echo -n "$2"
     else
       echo -n "$3"
