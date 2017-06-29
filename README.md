@@ -17,6 +17,9 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
 These items (for now) require a manual check to see if they are installed, and if not, to install them.
 * [Curl](https://curl.haxx.se/)
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
+* Node.js and npm (needed for [Leasot](https://github.com/pgilad/leasot) and [dotfiles/git/mdtodo.sh](git/mdtodo.sh))
+* [Leasot](https://github.com/pgilad/leasot)
+  - npm install --global leasot
 * (Cygwin) Deja Vu Sans Mono for Powerline fonts [(in dotfiles/fonts/deja-vu-sans-mono-ttf)](fonts/deja-vu-sans-mono-ttf)
   - Open in Explorer
   - Right-click on each font file and choose Install
