@@ -13,7 +13,7 @@
         path: runcom/bashrc
     ~/bin:
         path: extra/bin
-    ~/bin/mdtodo.sh:
+    ~/bin/mdtodo:
         path: git/mdtodo.sh
     ~/.aws/config:
         path: aws/config
