@@ -1,5 +1,11 @@
 #! /usr/bin/env bash
 
+# Check for prerequisites
+declare -a prereqs=("leasot" "sed")
+for prog in "${prereqs[@]}" ; do
+  command -v $prog > /dev/null 2>&1 || { echo >&2 "Program '$prog' required but not found. Aborting."; exit 1; }
+done
+
 MDFILE=$1; shift
 HEADER='### TODOs'
 TRAILER='###### TODOs parsed by [leasot](https://github.com/pgilad/leasot)'
