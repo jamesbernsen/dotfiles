@@ -1,0 +1,1 @@
+:%s/\v^All participants can attend$\n//g:%s/\v^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)[^ ]+/\1/g:%s/\v([0-9]) ([0-9])/\1, \2/g:noh:set nonumbergg
