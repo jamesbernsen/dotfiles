@@ -38,3 +38,8 @@ fi
 
 # Add a "journal" alias for logging system changes
 alias journal='date >> ~/admin_journal.txt; $EDITOR ~/admin_journal.txt'
+
+# The "functions" command lists available bash function names (without a
+# leading underscore).
+alias functions='declare -F | awk "\$3 ~ /^[^_]/ { print \$3}"'
+
