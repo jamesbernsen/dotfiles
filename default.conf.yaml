@@ -8,8 +8,10 @@
 
 - link:
     ~/.bash_profile:
+        force: true
         path: runcom/bash_profile
     ~/.bashrc:
+        force: true
         path: runcom/bashrc
     ~/bin:
         path: extra/bin
