@@ -5,7 +5,7 @@ Personal environment preferences and settings, mostly for Ubuntu and Cygwin.
 ## Install
 Install the dotfiles by cloning the Git repository and running the dotbot install script:
 
-    git clone https://github.com/jamesbernsen/dotfiles.git ~/dotfiles
+    git clone https://github.com/jamesb/dotfiles.git ~/dotfiles
     cd ~/dotfiles
     ./install
 
