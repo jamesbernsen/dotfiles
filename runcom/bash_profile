@@ -38,7 +38,11 @@ fi
 # Administrator when mintty is launched that way.
 #
 if command -v tmux>/dev/null; then
-  if [[ ! $TERM =~ screen && -z $TMUX ]] ; then
+  if [[ $TERM =~ screen ]] ; then
+    echo "Already running tmux: \$TERM == ${TERM}"
+  elif [[ ! -z $TMUX ]] ; then
+    echo "Already running tmux: \$TMUX == ${TMUX}"
+  else
     if ! $DOTFILES_DIR/system/escape-hatch.sh 3 ; then
       echo "Starting tmux ..."
       exec tmux new-session -A -s base
@@ -46,6 +50,8 @@ if command -v tmux>/dev/null; then
       echo "Skipping tmux ..."
     fi
   fi
+else
+  echo "Cannot find tmux in PATH"
 fi
 
 # Read cache
