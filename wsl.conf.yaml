@@ -6,10 +6,9 @@
       relink: false
       force: false
 
-- link:
-    ~/.mintty/themes/solarized-dark:
-        path: mintty/themes/mintty-colors-solarized/.minttyrc.dark
-    ~/.mintty/themes/solarized-light:
-        path: mintty/themes/mintty-colors-solarized/.minttyrc.light
-    ~/.minttyrc:
-        path: mintty/minttyrc
+- shell:
+  - [cp -L mintty/minttyrc /mnt/c/Users/James/AppData/Roaming/wsltty/config]
+  - [mkdir -p /mnt/c/Users/James/AppData/Roaming/wsltty/themes]
+  - [cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark /mnt/c/Users/James/AppData/Roaming/wsltty/themes/solarized-dark]
+  - [cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light /mnt/c/Users/James/AppData/Roaming/wsltty/themes/solarized-light]
+  - [touch ~/.sudo_as_admin_successful]
