@@ -7,8 +7,5 @@
       force: false
 
 - shell:
-  - [cp -L mintty/minttyrc /mnt/c/Users/James/AppData/Roaming/wsltty/config]
-  - [mkdir -p /mnt/c/Users/James/AppData/Roaming/wsltty/themes]
-  - [cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark /mnt/c/Users/James/AppData/Roaming/wsltty/themes/solarized-dark]
-  - [cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light /mnt/c/Users/James/AppData/Roaming/wsltty/themes/solarized-light]
-  - [touch ~/.sudo_as_admin_successful]
+  - [WSLTTY=/mnt/c/Users/James/AppData/Roaming/wsltty/ && cp -L mintty/minttyrc $WSLTTY/config && mkdir -p $WSLTTY/themes && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark $WSLTTY/themes/solarized-dark && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light $WSLTTY/themes/solarized-light , Copying wsltty files]
+  - [touch ~/.sudo_as_admin_successful , Supressing sudo message]
