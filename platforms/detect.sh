@@ -1,6 +1,12 @@
 UNAME_S="$(uname -s)"
+UNAME_R="$(uname -r)"
 case $UNAME_S in
-  'Linux')     PLATFORM='Linux'   ;;
+  'Linux')
+    case $UNAME_R in
+      *Microsoft*)  PLATFORM='WSL' ;;
+      *)            PLATFORM='Linux' ;;
+    esac
+    ;;
   CYGWIN*)     PLATFORM='Cygwin'  ;;
   'WindowsNT') PLATFORM='Windows' ;;
   'Darwin')    PLATFORM='MacOS'   ;;
@@ -8,7 +14,7 @@ case $UNAME_S in
   *)           PLATFORM='other'   ;;
 esac
 
-echo "Identified platform ($UNAME_S) as \"$PLATFORM\""
+echo "Identified platform as \"$PLATFORM\""
 export PLATFORM
 
 # Clean up
