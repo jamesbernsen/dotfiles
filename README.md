@@ -20,6 +20,7 @@ These items (for now) require a manual check to see if they are installed, and i
 * Node.js and npm (needed for [Leasot](https://github.com/pgilad/leasot) and [dotfiles/git/mdtodo.sh](git/mdtodo.sh))
 * [Leasot](https://github.com/pgilad/leasot)
   - npm install --global leasot
+* (WSL) [Wsltty](https://github.com/mintty/wsltty)
 * (Cygwin) Deja Vu Sans Mono for Powerline fonts [(in dotfiles/fonts/deja-vu-sans-mono-ttf)](fonts/deja-vu-sans-mono-ttf)
   - Open in Explorer
   - Right-click on each font file and choose Install
