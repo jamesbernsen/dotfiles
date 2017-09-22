@@ -1,11 +1,18 @@
 - clean: ['~']
 
 - defaults:
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
+      quiet: true
     link:
       create: true
       relink: false
       force: false
 
 - shell:
-  - [WSLTTY=/mnt/c/Users/James/AppData/Roaming/wsltty/ && cp -L mintty/minttyrc $WSLTTY/config && mkdir -p $WSLTTY/themes && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark $WSLTTY/themes/solarized-dark && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light $WSLTTY/themes/solarized-light , Copying wsltty files]
-  - [touch ~/.sudo_as_admin_successful , Supressing sudo message]
+  -
+    description: Configuring wsltty (mintty for WSL)...
+    command: read -p 'Your Windows Username? ' winuser && WSLTTY=/mnt/c/Users/${winuser}/AppData/Roaming/wsltty/ && mkdir -p $WSLTTY/themes && cp -L mintty/minttyrc $WSLTTY/config && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark $WSLTTY/themes/solarized-dark && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light $WSLTTY/themes/solarized-light
+  - [touch ~/.sudo_as_admin_successful , Supressing sudo message...]
