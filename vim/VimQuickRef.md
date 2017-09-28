@@ -7,21 +7,17 @@ _ProVim:_
 
 | Command / Key         | Description
 | --------------------- | ---
-| :h *command*          | Get help on a Vim command
-| `<C-i>` or `<C-]>`    | "Jump *In*" - Follow a [tag](https://ctags.io/) (hyperlink; indicated by a plus sign) 
-| `<C-o>` or `<C-t>`    | "Jump *Out*" - Return to previous location after following a tag.
-| gx                    | Open the URL under the cursor in a web browser
-| | |
 | :new *[filename]*     | Open a new buffer (optionally providing a *filename*) in a new horizontal split
 | :enew *[filename]*    | Open a new buffer (optionally providing a *filename*) in the current viewport
 | :vnew *[filename]*    | Open a new buffer (optionally providing a *filename*) in a new vertical split
 | :tabnew *[filename]*  | Open a new buffer (optionally providing a *filename*) in a new tab
 | :Scratch              | Open a scratch buffer (requires __scratch.vim__ plugin)
 | | |
-| :e *path*             | Edit a file in a new buffer
-| :read *path*          | Read the contents of a file (at *path*) into our current buffer
+| :e *filename*         | Edit a file in a new buffer
+| :read *filename*      | Read the contents of a file into our current buffer
 | :read !*cmd*          | Read the output of a shell command (*cmd*) into our current buffer
 | | |
+| :h *command*          | Get help on a Vim command
 | :pwd                  | List Vim's working directory
 | :cd *path*            | Change Vim's working directory to *path*
 | :set fileformat=*fmt* | Change the format of a file to *fmt*, which can be `dos`, `unix`, or `mac`
@@ -57,10 +53,15 @@ _ProVim:_
 | M                    | Move cursor to the middle of the viewport
 | L                    | Move cursor to the bottom of the viewport
 | | |
+| `<C-i>` or `<C-]>`   | "Jump *In*" - Follow a [tag](https://ctags.io/) (hyperlink; indicated by a plus sign) 
+| `<C-o>` or `<C-t>`   | "Jump *Out*" - Return to previous location after following a tag.
+| gx                   | Open the URL under the cursor in a web browser
+| | |
 | `<C-w>` w            | Cycle cursor through windows
 | `<C-w>` *direction*  | Move cursor to a window above, below, to the left, or to the right (as indicated by *direction* key) of the current window
 | `<C-w>` p            | Move cursor to the previous (last accessed) window
 | `<C-w>` r            | Rotate window positions
+| `<C-w>` T            | Move the current window to its own tab
 | `<C-w>` +            | Increase the height of the current window
 | `<C-w>` -            | Decrease the height of the current window
 | `<C-w>` =            | Equalize the heights of all windows (within constraints)
@@ -200,10 +201,10 @@ _ProVim:_
 | :b*n*             | Move to the *n*th buffer
 | :ls               | List all of the available buffers
 | :b#               | Switch to the alternate (last) buffer
-| :bd #             | Delete buffer with number # (using numbers from :ls command)
+| :bd *n*           | Delete buffer with number *n* (using numbers from :ls command)
 | :bufdo *cmd*      | Perform a command (*cmd*) on all buffers
 | | |
-| :sb *#*           | Create a split with an existing buffer (identified by *#*)
+| :sb *n*           | Create a split with an existing buffer (identified by *n*)
 | :sp [*file*]      | Horizontally split the current buffer (or load *file* into a split)
 | :vs [*file*]      | Vertically split the current buffer (or load *file* into a split)
 | | |
@@ -212,10 +213,8 @@ _ProVim:_
 | gt &#124; :tabn   | Move to the next tab
 | gT &#124; :tabp   | Move to the previous tab
 | :tabc             | Close a tab
-| :tabmove *#*      | Move the current tab to the position indicated by *#*
+| :tabmove *n*      | Move the current tab to the position indicated by *n*
 | :tabonly          | Close all tabs except the current one
-| | |
-| `<C-w>` T         | Move the current window to its own tab
 
 
 ## Registers ##
@@ -236,14 +235,14 @@ Used for temporary data storage (and other neat tricks)
 
 Commands frequently used when working with registers:
 
-| Command          | Description
-| ---------------- | ---
-| :reg             | Display the contents of Vim's registers
-| " {*reg-id*} p   | Paste the content of the register identified by *reg-id*. (eg. `"4p` pastes the content of register 4)
-| " {*reg-id*} y   | Yank text into the register identified by *reg-id*. (eg. `"xy` yanks selected text, placing it into register x). If *reg-id* is an uppercase letter, the text will be **appended** into the named register.
-| :put {*reg-id*}  | Write the contents of register *reg-id* to the buffer
-| `<C-r>` *reg-id* | **From the expression register or INSERT mode**: paste the content of the register identified by *reg-id*
-| `<C-r> =`        | **From INSERT mode**: enter the expression register
+| Command            | Description
+| ------------------ | ---
+| :reg               | Display the contents of Vim's registers
+| " {*reg-id*} p     | Paste the content of the register identified by *reg-id*. (eg. `"4p` pastes the content of register 4)
+| " {*reg-id*} y     | Yank text into the register identified by *reg-id*. (eg. `"xy` yanks selected text, placing it into register x). If *reg-id* is an uppercase letter, the text will be **appended** into the named register.
+| :put {*reg-id*}    | Write the contents of register *reg-id* to the buffer
+| `<C-r>` {*reg-id*} | **From the expression register or INSERT mode**: paste the content of the register identified by *reg-id*
+| `<C-r> =`          | **From INSERT mode**: enter the expression register
 
 
 ## File Modifiers ##
