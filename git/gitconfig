@@ -7,6 +7,7 @@
 	lola = !git lol --all && 0
 	st = status -sb
 	git = !git
+	sha = rev-parse --short HEAD
 [core]
 	autocrlf = input
 	editor = vim
