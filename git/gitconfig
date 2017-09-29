@@ -6,6 +6,7 @@
 	lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 	lola = !git lol --all && 0
 	st = status -sb
+	git = !git
 [core]
 	autocrlf = input
 	editor = vim
