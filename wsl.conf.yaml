@@ -1,15 +1,15 @@
 - clean: ['~']
 
 - defaults:
+    link:
+      create: true
+      relink: false
+      force: false
     shell:
       stdin: true
       stdout: true
       stderr: true
       quiet: true
-    link:
-      create: true
-      relink: false
-      force: false
 
 - shell:
   - description: Configuring wsltty (mintty for WSL)...
