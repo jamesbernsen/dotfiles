@@ -1,0 +1,28 @@
+# Prerequisite utilities
+curl
+git
+vim
+
+# For compiling from source
+build-essential
+
+# For compiling tmux
+libevent1-dev
+libncurses5-dev
+
+# For tmux clipboard
+xclip
+
+# Docker
+docker.io
+vim-syntax-docker
+
+# Python
+python-pip
+
+# Node package manager (for leasot / mktodo)
+npm
+
+# Other utilities
+awscli
+tree

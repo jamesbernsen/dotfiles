@@ -5,6 +5,11 @@
       create: true
       relink: false
       force: false
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
+      quiet: true
 
 - link:
     ~/.fonts/Droid+Sans+Mono+for+Powerline.otf:
@@ -15,4 +20,7 @@
         path: fonts/powerline-symbols/10-powerline-symbols.conf
 
 - shell:
-  - fc-cache -vf ~/.fonts
+  - description: Installing fonts...
+    command: fc-cache -vf ~/.fonts
+  - description: Installing apt packages...
+    command: sudo apt-get install $(grep -vE "^\s*#" packages/apt.txt | xargs)
