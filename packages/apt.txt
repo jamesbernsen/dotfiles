@@ -20,7 +20,7 @@ vim-syntax-docker
 # Python
 python-pip
 
-# Node package manager (for leasot / mktodo)
+# Node package manager (for leasot / mdtodo.sh)
 npm
 
 # Other utilities
