@@ -23,6 +23,8 @@
         path: git/gitconfig
     ~/.gitignore:
         path: git/gitignore
+    ~/.git-templates:
+        path: git/templates
     ~/.marvim:
         path: marvim
     ~/.tmux:
