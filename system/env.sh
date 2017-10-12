@@ -45,5 +45,5 @@ fi
 
 
 # Set personal GitHub variables
-export GITHUB_USER=jamesbernsen
+export GITHUB_USER=jamesb
 
