@@ -1,3 +1,6 @@
+# Include dotfiles functions
+. ${DOTFILES_DIR}/system/function.sh
+
 # Default permissions to 0644
 umask 022
 
