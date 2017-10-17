@@ -7,6 +7,13 @@ export VISUAL=${EDITOR}
 set -o vi
 
 
+# Enable color support, if available
+if [ is-executable dircolors ]; then
+  DIRCOLORS_FILE="${DOTFILES_DIR}/system/dircolors-solarized/dircolors.ansi-dark"
+  eval "$(dircolors "$DIRCOLORS_FILE")"
+fi
+
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -46,4 +53,3 @@ fi
 
 # Set personal GitHub variables
 export GITHUB_USER=jamesb
-
