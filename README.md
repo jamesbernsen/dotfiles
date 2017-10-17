@@ -1,5 +1,5 @@
 # dotfiles
-Personal environment preferences and settings, mostly for Ubuntu and Cygwin.
+Personal environment preferences and settings, mostly for Ubuntu, Cygwin, and WSL.
 
 
 ## Install
