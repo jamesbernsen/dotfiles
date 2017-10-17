@@ -11,7 +11,7 @@ set -o vi
 
 
 # Enable color support, if available
-if [ is-executable dircolors ]; then
+if is-executable dircolors ; then
   DIRCOLORS_FILE="${DOTFILES_DIR}/system/dircolors-solarized/dircolors.ansi-dark"
   eval "$(dircolors "$DIRCOLORS_FILE")"
 fi
