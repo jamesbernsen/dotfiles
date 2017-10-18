@@ -13,6 +13,13 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
 
     ./install foo
 
+## Configuration Management
+If this is a new machine and requires software installation, then also:
+
+    sudo config_mgmt/config.sh
+
+This will install ChefDK on the machine.
+
 ### And Then Manually Install (ugh) ###
 These items (for now) require a manual check to see if they are installed, and if not, to install them.
 * [Curl](https://curl.haxx.se/)
