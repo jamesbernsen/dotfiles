@@ -8,7 +8,7 @@
 # configuration of the target users' chef repo.
 #   Must have root authority
 # Arguments:
-#   $1 -  Chef client version (eg. "2.1.11")
+#   $1 -  ChefDK version (eg. "2.1.11")
 #############################################################################
 install_chefdk() {
   local chefdk_ver="$1" && shift
