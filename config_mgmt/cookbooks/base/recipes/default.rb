@@ -54,6 +54,20 @@ if is_WSL?
 		puts ''
 	end
 
+	if local_pkgs.key?("virtualbox")
+		# Install WSL-friendly version of Vagrant.
+		version = "2.0.0"
+		arch = "x86_64"
+		remote_file "/tmp/vagrant_#{version}_#{arch}.deb" do
+			source "https://releases.hashicorp.com/vagrant/#{version}/vagrant_#{version}_#{arch}.deb"
+			mode 0644
+		end
+
+		dpkg_package "vagrant" do
+			source "/tmp/vagrant_#{version}_#{arch}.deb"
+			action :install
+		end
+	end
 end
 
 unless is_WSL?
