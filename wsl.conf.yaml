@@ -11,6 +11,10 @@
       stderr: true
       quiet: true
 
+- link:
+    ~/bin/choco:
+      path: /mnt/c/ProgramData/chocolatey/bin/choco.exe
+
 - shell:
   - description: Configuring wsltty (mintty for WSL)...
     command: read -p 'Your Windows Username? ' winuser && WSLTTY=/mnt/c/Users/${winuser}/AppData/Roaming/wsltty/ && mkdir -p $WSLTTY/themes && cp -L mintty/minttyrc $WSLTTY/config && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.dark $WSLTTY/themes/solarized-dark && cp -L mintty/themes/mintty-colors-solarized/.minttyrc.light $WSLTTY/themes/solarized-light
