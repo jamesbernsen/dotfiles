@@ -24,26 +24,33 @@ This will install ChefDK on the machine, along with the software and configurati
 
 ### And Then Manually Install (ugh) ###
 These items (for now) require a manual check to see if they are installed, and if not, to install them.
+
+#### On Most Platforms
 * [Tmux](https://tmux.github.io) 2.5+
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 * Node.js and npm (needed for [Leasot](https://github.com/pgilad/leasot) and [dotfiles/git/mdtodo.sh](git/mdtodo.sh))
 * [Leasot](https://github.com/pgilad/leasot)
   - npm install --global leasot
-* (WSL) [Wsltty](https://github.com/mintty/wsltty)
-* (Cygwin) Deja Vu Sans Mono for Powerline fonts [(in dotfiles/fonts/deja-vu-sans-mono-ttf)](fonts/deja-vu-sans-mono-ttf)
-  - Open in Explorer
-  - Right-click on each font file and choose Install
-
-Security concerns prevent these items from residing in the repo:
-* SSH keys
-* AWS credentials file
-
-And (not required), but here's other stuff that I generally like to install:
 * [Universal Ctags](https://github.com/universal-ctags/ctags)
-* (Ubuntu) Manually select the Droid Sans Mono for Powerline font in Gnome terminal. (Otherwise, we should still get the symbol font, but the patched font looks better.)
+
+#### On Ubuntu
+* Manually select the Droid Sans Mono for Powerline font in Gnome terminal. (Otherwise, we should still get the symbol font, but the patched font looks better.)
   - Edit > Profile Preferences
   - General tab
   - Custom Font: Droid Sans Mono for Powerline 
+
+#### On Windows Subsystem for Linux (WSL):
+* [Wsltty](https://github.com/mintty/wsltty)
+
+#### On Windows platforms (WSL and Cygwin):
+* Deja Vu Sans Mono for Powerline fonts [(in dotfiles/fonts/deja-vu-sans-mono-ttf)](fonts/deja-vu-sans-mono-ttf)
+  - Open in Explorer
+  - Right-click on each font file and choose Install
+
+#### Credentials, Keys, and Other Secrets
+Security concerns prevent these items from residing in the repo:
+* SSH keys
+* AWS credentials file
 
 ## Additional resources
 * [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
