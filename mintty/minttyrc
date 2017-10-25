@@ -2,8 +2,8 @@ BoldAsFont=-1
 FontHeight=11
 Transparency=high
 OpaqueWhenFocused=yes
-Columns=100
-Rows=30
+Columns=140
+Rows=50
 Term=xterm-256color
 Font=DejaVu Sans Mono for Powerline
 FontWeight=400
@@ -11,3 +11,6 @@ FontIsBold=no
 
 ClicksPlaceCursor=yes
 ThemeFile=solarized-dark
+MiddleClickAction=extend
+RightClickAction=paste
+AllowSetSelection=true
