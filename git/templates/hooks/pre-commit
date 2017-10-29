@@ -1,12 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 #
 # A hook script to verify what is about to be committed, called by
 # "git commit" with no arguments.  The hook should exit with non-zero
 # status after issuing an appropriate message if it wants to stop the commit.
 
+PROGSELF=$(basename $0)
+
 #############################################################################
 # Check whether non-ASCII filenames are allowed.
 #############################################################################
+echo "${PROGSELF}: Checking for non-ASCII filenames..."
+
 # If you want to allow non-ASCII filenames set this variable to true.
 allownonascii=$(git config --bool hooks.allownonascii)
 
@@ -47,10 +51,48 @@ EOF
 fi
 
 #############################################################################
+# Check for TODO comments in committed code and document them.
+#############################################################################
+echo "${PROGSELF}: Processing TODO comments in the codebase..."
+TODO_MARKDOWN_FILE=README.md
+# If the TODO_MARKDOWN_FILE doesn't exist, create it
+if [[ ! -f ${TODO_MARKDOWN_FILE} ]]; then
+  touch ${TODO_MARKDOWN_FILE}
+fi
+
+# Prior to initial commit, there are no tree-ish objects. Detect this.
+OBJECTS=$(git rev-list --objects --all)
+if [[ ! -z "${OBJECTS}" ]]; then
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  BRANCH_FILES=($(git ls-tree -r --name-only $BRANCH))
+fi
+
+COMMIT_FILES=($(git diff --cached --name-only --diff-filter=ACM -z | xargs -0))
+FILES=(${BRANCH_FILES} ${COMMIT_FILES})
+
+# Remove duplicate filenames
+FILES=($(echo "${FILES[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+echo "  ${FILES[@]}"
+
+mdtodo -x -o ${TODO_MARKDOWN_FILE} ${FILES[@]}
+if [ "$?" -ne 0 ]
+then
+  echo
+  echo "New TODOs added to $TODO_MARKDOWN_FILE"
+  echo "  (use "git add $TODO_MARKDOWN_FILE" to include them in this commit)"
+  echo
+
+  exit $?
+fi
 # Stop accidental commits to "master" and "develop" branches.
 # Credit: https://gist.github.com/stefansundin/9059706
 #############################################################################
-BRANCH=`git rev-parse --abbrev-ref HEAD`
+echo "${PROGSELF}: Checking commit branch..."
+# Prior to initial commit, there are no tree-ish objects. Detect this.
+OBJECTS=$(git rev-list --objects --all)
+if [[ ! -z "${OBJECTS}" ]]; then
+  BRANCH=`git rev-parse --abbrev-ref HEAD`
+fi
 
 if [[ "$BRANCH" == "master" || "$BRANCH" == "develop" ]]; then
   echo "You are on branch $BRANCH. Are you sure you want to commit to this branch?"
