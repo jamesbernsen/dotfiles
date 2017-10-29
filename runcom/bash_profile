@@ -67,7 +67,7 @@ done
 
 # Platform-specific files
 plat=$(tolower $PLATFORM) # requires function from function_text.sh
-for DOTFILE in "$DOTFILES_DIR"/system/{env,alias,function}.${plat}.sh ; do
+for DOTFILE in "$DOTFILES_DIR"/system/{path,env,alias,function}.${plat}.sh ; do
   [ -f "$DOTFILE" ] && echo "Sourcing ${DOTFILE#$HOME/} ..." && source "$DOTFILE"
 done
 
