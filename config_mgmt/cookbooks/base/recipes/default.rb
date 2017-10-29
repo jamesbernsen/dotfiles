@@ -9,17 +9,18 @@ extend BaseLib::WSL
 
 #############################################################################
 # Schedule a daily apt-get update
+# Credit: https://stackoverflow.com/questions/9246786/how-can-i-get-chef-to-run-apt-get-update-before-running-other-recipes
 execute "apt-get-update-periodic" do
   command "apt-get update"
   ignore_failure true
   only_if do
-    File.exists?('/var/lib/apt/periodic/update-success-stamp') &&
+    !File.exists?('/var/lib/apt/periodic/update-success-stamp') ||
     File.mtime('/var/lib/apt/periodic/update-success-stamp') < Time.now - 86400
   end
 end
 
 
-############################################################################i
+#############################################################################
 # Utilities (probably already preinstalled)
 package 'curl'
 package 'git'
@@ -38,36 +39,36 @@ if is_WSL?
   end
 
   if pkg_match < reqd_choco_pkgs.length
-		# WSL does not support Linux versions of these packages.
-		# Chef doesn't test for WSL, so it thinks the node is Linux and can't use
-		# the chocolatey_package resource.
-		puts ''
-		puts 'WSL does not support Linux versions of some virtualization tools. These will need to be'
-		puts 'installed in Windows. The following steps are recommended:'
-		puts '1) Install the chocolatey package manager.'
-		puts '2) Then, from an Administrator-elevated Windows command prompt:'
+    # WSL does not support Linux versions of these packages.
+    # Chef doesn't test for WSL, so it thinks the node is Linux and can't use
+    # the chocolatey_package resource.
+    puts ''
+    puts 'WSL does not support Linux versions of some virtualization tools. These will need to be'
+    puts 'installed in Windows. The following steps are recommended:'
+    puts '1) Install the chocolatey package manager.'
+    puts '2) Then, from an Administrator-elevated Windows command prompt:'
     reqd_choco_pkgs.each do |pkg_name|
-			unless local_pkgs.key?(pkg_name)
-				puts "  choco install #{pkg_name}"
-			end
-		end
-		puts ''
-	end
+      unless local_pkgs.key?(pkg_name)
+        puts "  choco install #{pkg_name}"
+      end
+    end
+    puts ''
+  end
 
-	if local_pkgs.key?("virtualbox")
-		# Install WSL-friendly version of Vagrant.
-		version = "2.0.0"
-		arch = "x86_64"
-		remote_file "/tmp/vagrant_#{version}_#{arch}.deb" do
-			source "https://releases.hashicorp.com/vagrant/#{version}/vagrant_#{version}_#{arch}.deb"
-			mode 0644
-		end
+  if local_pkgs.key?("virtualbox")
+    # Install WSL-friendly version of Vagrant.
+    version = "2.0.0"
+    arch = "x86_64"
+    remote_file "/tmp/vagrant_#{version}_#{arch}.deb" do
+      source "https://releases.hashicorp.com/vagrant/#{version}/vagrant_#{version}_#{arch}.deb"
+      mode 0644
+    end
 
-		dpkg_package "vagrant" do
-			source "/tmp/vagrant_#{version}_#{arch}.deb"
-			action :install
-		end
-	end
+    dpkg_package "vagrant" do
+      source "/tmp/vagrant_#{version}_#{arch}.deb"
+      action :install
+    end
+  end
 end
 
 unless is_WSL?
@@ -75,6 +76,11 @@ unless is_WSL?
   package 'virtualbox'
   package 'vagrant'
 end
+
+## TODO (jrb): Need to perform additional steps?
+# vagrant box add hashicorp/precise64
+# vagrant box add bento/ubuntu-16.04
+# vagrant box add ubuntu/xenial64
 
 #############################################################################
 # Install build tools
@@ -84,4 +90,11 @@ package 'build-essential'
 # Nice-to-haves
 package 'tree' do
   ignore_failure true
+end
+
+# For copy/paste from Tmux to clipboard with an X server
+unless is_WSL?
+  package 'xclip' do
+    ignore_failure true
+  end
 end

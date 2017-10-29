@@ -14,6 +14,10 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
+    driver:
+      box: hashicorp/precise64
+      customize:
+        uartmode1: disconnected
 
 suites:
   - name: default

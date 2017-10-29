@@ -9,9 +9,9 @@ module BaseLib
 			return (node['kernel']['name'].include? "Linux" and node['os_version'].include? "Microsoft")
 		end
 
-		def choco_pkg_local_install?(pkg_name_rxp)
+		def choco_pkg_local_install?(pkg_name)
 			cmd = shell_out!('choco.exe list --localonly -r', {:environment => { "PATH" => "/mnt/c/ProgramData/chocolatey/bin" }, :returns => [0]})
-			return (cmd.stdout =~ /#{pkg_name_rxp}/)
+			return (cmd.stdout =~ /#{RegExp.escape(pkg_name)}/)
 		end
 
 		def choco_pkgs_locally_installed
