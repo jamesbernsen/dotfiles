@@ -32,7 +32,7 @@ is-supported() {
 
 # Add to path
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+  [[ -d $1 ]] && PATH="$1:$PATH"
 }
 
 
