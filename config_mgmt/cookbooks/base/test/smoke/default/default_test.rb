@@ -21,6 +21,10 @@ describe package('zip') do
   it { should be_installed }
 end
 
+describe package('vim') do
+  it { should be_installed }
+end
+
 if command('uname -r').stdout.include? "Microsoft"
   # WSL does not support VirtualBox and Vagrant
 else
@@ -39,6 +43,22 @@ end
 
 describe package('build-essential') do
   it { should be_installed }
+end
+
+describe package('tmux') do
+  it { should_not be_installed }
+end
+
+describe package('libevent-dev') do
+  it { should be_installed }
+end
+
+describe package('libncurses5-dev') do
+  it { should be_installed }
+end
+
+describe command('tmux -V') do
+  its('stdout') { should include 'tmux 2.5' }
 end
 
 describe package('tree') do

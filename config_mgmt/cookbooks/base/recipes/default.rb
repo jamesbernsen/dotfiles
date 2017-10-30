@@ -28,6 +28,10 @@ package 'unzip'
 package 'zip'
 
 #############################################################################
+# Vim (probably already preinstalled)
+package 'vim'
+
+#############################################################################
 # Virtualization for Test Kitchen
 
 if is_WSL?
@@ -57,15 +61,16 @@ if is_WSL?
 
   if local_pkgs.key?("virtualbox")
     # Install WSL-friendly version of Vagrant.
-    version = "2.0.0"
+    vagrant_ver = "2.0.0"
     arch = "x86_64"
-    remote_file "/tmp/vagrant_#{version}_#{arch}.deb" do
-      source "https://releases.hashicorp.com/vagrant/#{version}/vagrant_#{version}_#{arch}.deb"
+    vagrant_pkg_name = "vagrant_#{vagrant_ver}_#{arch}.deb"
+    remote_file "/tmp/#{vagrant_pkg_name}" do
+      source "https://releases.hashicorp.com/vagrant/#{vagrant_ver}/#{vagrant_pkg_name}"
       mode 0644
     end
 
     dpkg_package "vagrant" do
-      source "/tmp/vagrant_#{version}_#{arch}.deb"
+      source "/tmp/#{vagrant_pkg_name}"
       action :install
     end
   end
@@ -85,6 +90,53 @@ end
 #############################################################################
 # Install build tools
 package 'build-essential'
+
+#############################################################################
+# Build latest Tmux
+
+# Remove tmux package
+package 'tmux' do
+  action :remove
+end
+
+# Install tmux build dependencies
+package 'libevent-dev'
+package 'libncurses5-dev'
+
+# Download and build tmux
+tmux_ver = "2.5"
+local_src_dir = "/usr/local/src"
+tmux_src_dir = "#{local_src_dir}/tmux-#{tmux_ver}"
+tmux_pkg_name = "tmux-#{tmux_ver}.tar.gz"
+
+directory "#{local_src_dir}" do
+  recursive true
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
+end
+
+remote_file "#{local_src_dir}/#{tmux_pkg_name}" do
+  source "https://github.com/tmux/tmux/releases/download/#{tmux_ver}/#{tmux_pkg_name}"
+  mode 0644
+end
+
+execute 'extract_tmux_pkg' do
+  command "tar xzf #{tmux_pkg_name}"
+  cwd "#{local_src_dir}"
+end
+
+bash "build_tmux" do
+  Chef::Log.info("Building tmux...")
+  user 'root'
+  cwd "#{tmux_src_dir}"
+  code <<-END_CMDS
+  ./configure
+  make
+  make install
+  END_CMDS
+end
 
 #############################################################################
 # Nice-to-haves
