@@ -21,9 +21,6 @@ describe package('zip') do
   it { should be_installed }
 end
 
-describe sys_info do
-end
-
 if command('uname -r').stdout.include? "Microsoft"
   # WSL does not support VirtualBox and Vagrant
 else
