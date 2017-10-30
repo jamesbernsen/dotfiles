@@ -84,6 +84,8 @@ then
 
   exit $?
 fi
+
+#############################################################################
 # Stop accidental commits to "master" and "develop" branches.
 # Credit: https://gist.github.com/stefansundin/9059706
 #############################################################################
