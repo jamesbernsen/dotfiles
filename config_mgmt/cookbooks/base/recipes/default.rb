@@ -38,7 +38,7 @@ package 'vim'
 # Virtualization for Test Kitchen
 
 if is_WSL?
-  reqd_choco_pkgs = [ 'docker', 'virtualbox' ]
+  reqd_choco_pkgs = [ 'docker', 'vagrant', 'virtualbox' ]
   local_pkgs = choco_pkgs_locally_installed
   pkg_match = 0
   reqd_choco_pkgs.each do |pkg_name|
@@ -62,19 +62,24 @@ if is_WSL?
     puts ''
   end
 
-  if local_pkgs.key?("virtualbox")
-    # Install WSL-friendly version of Vagrant.
-    vagrant_ver = "2.0.0"
+  # Require Windows-side virtualbox and vagrant
+  if local_pkgs.key?('vagrant') && local_pkgs.key?('virtualbox')
+
+    # WSL Vagrant version must match Windows Vagrant
+    vagrant_ver = local_pkgs['vagrant']
     arch = "x86_64"
     vagrant_pkg_name = "vagrant_#{vagrant_ver}_#{arch}.deb"
     remote_file "/tmp/#{vagrant_pkg_name}" do
       source "https://releases.hashicorp.com/vagrant/#{vagrant_ver}/#{vagrant_pkg_name}"
       mode 0644
+      action :create
+      not_if "dpkg-query -W 'vagrant'"
     end
 
     dpkg_package "vagrant" do
       source "/tmp/#{vagrant_pkg_name}"
       action :install
+      not_if "dpkg-query -W 'vagrant'"
     end
   end
 end
