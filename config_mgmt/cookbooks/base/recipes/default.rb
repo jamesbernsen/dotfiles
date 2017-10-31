@@ -6,6 +6,9 @@
 #
 
 extend BaseLib::WSL
+require_relative '../libraries/tmux_helper'
+
+tmux = Class.new.extend(Tmux)
 
 #############################################################################
 # Schedule a daily apt-get update
@@ -120,11 +123,13 @@ end
 remote_file "#{local_src_dir}/#{tmux_pkg_name}" do
   source "https://github.com/tmux/tmux/releases/download/#{tmux_ver}/#{tmux_pkg_name}"
   mode 0644
+  action :create_if_missing
 end
 
 execute 'extract_tmux_pkg' do
   command "tar xzf #{tmux_pkg_name}"
   cwd "#{local_src_dir}"
+  not_if { tmux.is_installed? && tmux.installed_ver == tmux_ver }
 end
 
 bash "build_tmux" do
@@ -136,6 +141,7 @@ bash "build_tmux" do
   make
   make install
   END_CMDS
+  not_if { tmux.is_installed? && tmux.installed_ver == tmux_ver }
 end
 
 #############################################################################
