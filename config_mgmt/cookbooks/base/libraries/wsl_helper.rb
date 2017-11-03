@@ -17,7 +17,7 @@ module BaseLib
     def choco_pkgs_locally_installed
       cmd = shell_out!('choco.exe list --localonly -r', {:environment => { "PATH" => "/mnt/c/ProgramData/chocolatey/bin" }, :returns => [0]})
       list_text = cmd.stdout
-      list_text.gsub(/\r\n?/, "\n")
+      list_text = list_text.gsub(/\r\n?/, "\n")
       pkg_lines = list_text.split("\n")
       pkg_ver = Hash.new
       pkg_lines.each do |pkg_line|
