@@ -1,8 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # A hook script to verify what is about to be committed, called by
 # "git commit" with no arguments.  The hook should exit with non-zero
 # status after issuing an appropriate message if it wants to stop the commit.
+
+# Significant exit codes
+EX_FAIL=1
+
+# Check for prerequisites
+declare -a prereqs=("git" "basename" "leasot" "mdtodo")
+for prog in "${prereqs[@]}" ; do
+  command -v ${prog} > /dev/null 2>&1 || { echo >&2 "Program '${prog}' required but not found."; exit ${EX_FAIL}; }
+done
 
 PROGSELF=$(basename $0)
 
