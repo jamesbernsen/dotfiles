@@ -24,6 +24,17 @@ end
 
 
 #############################################################################
+# motd
+# NOTE (JRB): Supports multiple Linux distributions
+include_recipe 'motd::default'
+motd '55-mymotd' do
+  action [:create]
+  cookbook 'base'
+  source 'motd.erb'
+end
+
+
+#############################################################################
 # Utilities (probably already preinstalled)
 package 'curl'
 package 'git'

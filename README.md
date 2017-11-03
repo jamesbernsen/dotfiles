@@ -18,6 +18,8 @@ If this is a new machine and requires software installation, then also:
 
     cd config_mgmt
     sudo config.sh
+    cd cookbooks/base
+    berks vendor ..
     sudo chef-client -z --runlist "recipe[base::default]"
 
 This will install ChefDK on the machine, along with the software and configuration defined in the base cookbook.
