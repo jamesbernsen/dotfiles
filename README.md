@@ -26,10 +26,8 @@ This will install ChefDK on the machine, along with the software and configurati
 These items (for now) require a manual check to see if they are installed, and if not, to install them.
 
 #### On Most Platforms
-* [Tmux](https://tmux.github.io) 2.5+
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
-* Node.js and npm (needed for [Leasot](https://github.com/pgilad/leasot) and [dotfiles/git/mdtodo.sh](git/mdtodo.sh))
-* [Leasot](https://github.com/pgilad/leasot)
+* [Leasot](https://github.com/pgilad/leasot) (needed for [dotfiles/git/mdtodo.sh](git/mdtodo.sh))
   - npm install --global leasot
 * [Universal Ctags](https://github.com/universal-ctags/ctags)
 

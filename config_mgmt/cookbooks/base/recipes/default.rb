@@ -150,6 +150,11 @@ bash "build_tmux" do
 end
 
 #############################################################################
+# NodeJS and NPM
+package 'nodejs'
+package 'npm'
+
+#############################################################################
 # Nice-to-haves
 package 'tree' do
   ignore_failure true
