@@ -29,8 +29,6 @@ These items (for now) require a manual check to see if they are installed, and i
 
 #### On Most Platforms
 * [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
-* [Leasot](https://github.com/pgilad/leasot) (needed for [dotfiles/git/mdtodo.sh](git/mdtodo.sh))
-  - npm install --global leasot
 * [Universal Ctags](https://github.com/universal-ctags/ctags)
 
 #### On Ubuntu
@@ -60,3 +58,7 @@ Security concerns prevent these items from residing in the repo:
 ## Credits
 * Structure and content largely borrowed from [Lars Kappert's dotfiles](https://github.com/webpro/dotfiles)
 * Many thanks to the [dotfiles community](https://dotfiles.github.io/).
+### TODOs
+| Filename | line # | TODO
+|:------|:------:|:------
+###### TODOs parsed by [leasot](https://github.com/pgilad/leasot)
