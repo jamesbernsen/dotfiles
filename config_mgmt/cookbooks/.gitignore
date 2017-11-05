@@ -1,0 +1,3 @@
+# Don't commit these external cookbooks
+chef_handler/
+motd/
