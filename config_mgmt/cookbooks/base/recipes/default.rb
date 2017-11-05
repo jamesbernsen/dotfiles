@@ -161,9 +161,10 @@ bash "build_tmux" do
 end
 
 #############################################################################
-# NodeJS and NPM
-package 'nodejs'
-package 'npm'
+# NodeJS and NPM packages
+include_recipe "nodejs"
+include_recipe "nodejs::npm"
+nodejs_npm "leasot"
 
 #############################################################################
 # Nice-to-haves

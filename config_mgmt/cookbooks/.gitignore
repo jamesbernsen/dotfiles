@@ -1,3 +1,11 @@
 # Don't commit these external cookbooks
+ark/
+build-essential/
 chef_handler/
+compat_resource/
+mingw/
 motd/
+nodejs/
+ohai/
+seven_zip/
+windows/
