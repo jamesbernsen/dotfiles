@@ -58,7 +58,4 @@ Security concerns prevent these items from residing in the repo:
 ## Credits
 * Structure and content largely borrowed from [Lars Kappert's dotfiles](https://github.com/webpro/dotfiles)
 * Many thanks to the [dotfiles community](https://dotfiles.github.io/).
-### TODOs
-| Filename | line # | TODO
-|:------|:------:|:------
-###### TODOs parsed by [leasot](https://github.com/pgilad/leasot)
+
