@@ -42,6 +42,34 @@ package 'unzip'
 package 'zip'
 
 #############################################################################
+# Git tool - hub
+hub_ver = "2.2.9"
+hub_arch = "linux-amd64"
+hub_basename = "hub-#{hub_arch}-#{hub_ver}"
+hub_pkg_name = "#{hub_basename}.tgz"
+
+remote_file "/tmp/#{hub_pkg_name}" do
+  source "https://github.com/github/hub/releases/download/v#{hub_ver}/#{hub_pkg_name}"
+  mode 0644
+  action :create_if_missing
+end
+
+execute 'extract_hub_pkg' do
+  command "tar xzf #{hub_pkg_name}"
+  cwd "/tmp"
+end
+
+bash "install_hub" do
+  Chef::Log.info("Installing hub...")
+  user 'root'
+  cwd "/tmp/#{hub_basename}"
+  code <<-END_CMDS
+  ./install
+  END_CMDS
+  not_if "hub --version | grep #{hub_ver}"
+end
+
+#############################################################################
 # Vim (probably already preinstalled)
 package 'vim'
 
@@ -78,8 +106,8 @@ if is_WSL?
 
     # WSL Vagrant version must match Windows Vagrant
     vagrant_ver = local_pkgs['vagrant']
-    arch = "x86_64"
-    vagrant_pkg_name = "vagrant_#{vagrant_ver}_#{arch}.deb"
+    vagrant_arch = "x86_64"
+    vagrant_pkg_name = "vagrant_#{vagrant_ver}_#{vagrant_arch}.deb"
     remote_file "/tmp/#{vagrant_pkg_name}" do
       source "https://releases.hashicorp.com/vagrant/#{vagrant_ver}/#{vagrant_pkg_name}"
       mode 0644
