@@ -38,6 +38,7 @@ USAGE_END
 #############################################################################
 
 # Significant exit codes
+EX_SUCCESS=0
 EX_FAIL=1
 EX_MODIFIED=2
 EX_USAGE=64
@@ -64,7 +65,7 @@ while getopts "?hko:t:x" opt; do
   case "${opt}" in
     h|\?)
       show_usage "${PROGSELF}" "${HEADER}" "${TRAILER}"
-      exit 0
+      exit ${EX_SUCCESS} # exit with success here since usage was requested
       ;;
     k)
       keep_backup=true
@@ -102,40 +103,74 @@ HEADER_RGX=$(sed "${ESCAPE_LITERAL_RGX}" <<<"${HEADER}")
 TRAILER_RGX=$(sed "${ESCAPE_LITERAL_RGX}" <<<"${TRAILER}")
 
 mytmpdir=$(mktemp --directory --tmpdir pid$$.XXXXXXXXXX)
-tempfile=$(mktemp --tmpdir=$mytmpdir)
+tailfile=$(mktemp --tmpdir=$mytmpdir tail.XXXXXXXXXX)
+joutfile=$(mktemp --tmpdir=$mytmpdir jout.XXXXXXXXXX)
+moutfile=$(mktemp --tmpdir=$mytmpdir mout.XXXXXXXXXX)
 mkdir -p ${mytmpdir}
 backupfile="${mytmpdir}/${mdfile}"
 $(cp ${mdfile} ${mytmpdir})
 
 # In the markdown file, capture any text after the trailer pattern to a file.
-sed "0,\\|${TRAILER_RGX}|d" ${mdfile} > ${tempfile}
+sed "0,\\|${TRAILER_RGX}|d" ${mdfile} > ${tailfile}
 
 # In the markdown file, delete any text after the header pattern.
 sed -i "\\|^${HEADER_RGX}\$|,\$d" ${mdfile}
 
 # TODO (JRB): attempt to auto-detect filetypes
 
-# Append the table and trailer to the markdown file.
-leasot --reporter markdown ${filetype_arg} $@ >> ${mdfile}
-echo "${TRAILER}" >> ${mdfile}
+# Generate leasot output and handle exit codes.
+leasot --exit-nicely --reporter json --skip-unsupported ${filetype_arg} $@ &> ${joutfile}
+lea_ex=$?
+my_ex=127
+case "${lea_ex}" in
+  0)
+    # If leasot found no TODOs or FIXMEs, then restore the file and we're done.
+    if [[ $(< ${joutfile}) == '[]' ]]; then
+      echo "No TODOs or FIXMEs found..."
+      # Restore the previous markdown "tail" to the file.
+      cat ${tailfile} >> ${mdfile}
+      exit ${EX_SUCCESS}
+    fi
 
-# Restore the previous markdown "tail" to the file.
-cat ${tempfile} >> ${mdfile}
+    cat ${joutfile} | leasot-reporter --exit-nicely --reporter markdown &> ${moutfile}
+    learep_ex=$?
+    if [[ "${learep_ex}" -eq "1" ]]; then
+      echo "Leasot reporter exited with an error code ($learep_ex)..."
+      cat ${moutfile}
+      exit ${EX_FAIL}
+    fi
 
-# Did the Markdown file content change?
-$(cmp -s ${mdfile} ${backupfile})
-modified=$?
+    cat ${moutfile} >> ${mdfile}
+    echo "${TRAILER}" >> ${mdfile}
 
-if [[ ${keep_backup} = true ]] ; then
-  echo "${backupfile}"
-else
-  rm -f ${backupfile}
-fi
+    # Restore the previous markdown "tail" to the file.
+    cat ${tailfile} >> ${mdfile}
 
-rm -f ${tempfile}
-rmdir --ignore-fail-on-non-empty ${mytmpdir}
+    # Did the Markdown file content change?
+    $(cmp -s ${mdfile} ${backupfile})
+    modified=$?
 
-if [[ "${modified}" -gt "0" && ${exit_fail_on_modify} = true ]] ; then
-  exit ${EX_MODIFIED}
-fi
+    if [[ ${keep_backup} = true ]] ; then
+      echo "${backupfile}"
+    else
+      rm -f ${backupfile}
+    fi
 
+    # rm -f ${tailfile} ${joutfile}
+    # rm -f ${tailfile} ${moutfile}
+    rmdir --ignore-fail-on-non-empty ${mytmpdir}
+
+    if [[ "${modified}" -gt "0" && ${exit_fail_on_modify} = true ]] ; then
+      my_ex=${EX_MODIFIED}
+    else
+      my_ex=${EX_SUCCESS}
+    fi
+    ;;
+  1)
+    echo "Leasot exited with an error code ($lea_ex)..."
+    cat ${joutfile}
+    my_ex=${EX_FAIL}
+    ;;
+esac
+
+exit ${my_ex}

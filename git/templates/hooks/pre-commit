@@ -56,13 +56,13 @@ If you know what you are doing you can disable this check using:
 
   git config hooks.allownonascii true
 EOF
-	exit 1
+	exit ${EX_FAIL}
 fi
 
 #############################################################################
 # Check for TODO comments in committed code and document them.
 #############################################################################
-echo "${PROGSELF}: Processing TODO comments in the codebase..."
+echo "${PROGSELF}: Processing TODO comments in the repo..."
 TODO_MARKDOWN_FILE=README.md
 # If the TODO_MARKDOWN_FILE doesn't exist, create it
 if [[ ! -f ${TODO_MARKDOWN_FILE} ]]; then
@@ -84,14 +84,14 @@ FILES=($(echo "${FILES[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
 echo "  ${FILES[@]}"
 
 mdtodo -x -o ${TODO_MARKDOWN_FILE} ${FILES[@]}
-if [ "$?" -ne 0 ]
+if [ "$?" -eq 2 ]
 then
   echo
   echo "New TODOs added to $TODO_MARKDOWN_FILE"
   echo "  (use "git add $TODO_MARKDOWN_FILE" to include them in this commit)"
   echo
 
-  exit $?
+  exit ${EX_FAIL}
 fi
 
 #############################################################################
@@ -108,5 +108,5 @@ fi
 if [[ "$BRANCH" == "master" || "$BRANCH" == "develop" ]]; then
   echo "You are on branch $BRANCH. Are you sure you want to commit to this branch?"
   echo "If so, commit with -n to bypass this pre-commit hook."
-  exit 1
+  exit ${EX_FAIL}
 fi
