@@ -19,6 +19,7 @@ If this is a new machine and requires software installation, then also:
     cd config_mgmt
     sudo config.sh
     cd cookbooks/base
+    # (may need to remove Berksfile.lock and metadata.json if this is a reinstall/update)
     berks vendor ..
     sudo chef-client -z --runlist "recipe[base::default]"
 

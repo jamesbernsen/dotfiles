@@ -191,8 +191,13 @@ end
 #############################################################################
 # NodeJS and NPM packages
 include_recipe "nodejs"
+if node['platform_family'] == 'debian'
+  link '/usr/bin/node' do
+    to '/usr/bin/nodejs'
+  end
+end
 include_recipe "nodejs::npm"
-nodejs_npm "leasot"
+npm_package "leasot"
 
 #############################################################################
 # Nice-to-haves
