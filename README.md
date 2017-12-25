@@ -17,7 +17,7 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
 If this is a new machine and requires software installation, then also:
 
     cd config_mgmt
-    sudo config.sh
+    sudo ./config.sh
     cd cookbooks/base
     # (may need to remove Berksfile.lock and metadata.json if this is a reinstall/update)
     berks vendor ..
