@@ -32,7 +32,7 @@ alias la='ls -A'
 
 # Alias for github tool 'hub'
 if is-executable 'hub' ; then
-  alias git=hub
+  eval "$(hub alias -s)"
 fi
 
 
