@@ -190,7 +190,11 @@ end
 
 #############################################################################
 # NodeJS and NPM packages
+node.default['nodejs']['install_method'] = 'binary'
+node.default['nodejs']['version'] = '8.11.4'
+node.default['nodejs']['binary']['checksum'] = 'c69abe770f002a7415bd00f7ea13b086650c1dd925ef0c3bf8de90eabecc8790'
 include_recipe "nodejs"
+
 include_recipe "nodejs::npm"
 npm_package "leasot"
 npm_package "npx"
