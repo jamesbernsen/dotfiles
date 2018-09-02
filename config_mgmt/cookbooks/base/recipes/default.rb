@@ -43,7 +43,7 @@ package 'zip'
 
 #############################################################################
 # Git tool - hub
-hub_ver = "2.2.9"
+hub_ver = "2.5.1"
 hub_arch = "linux-amd64"
 hub_basename = "hub-#{hub_arch}-#{hub_ver}"
 hub_pkg_name = "#{hub_basename}.tgz"
