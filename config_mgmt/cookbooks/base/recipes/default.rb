@@ -137,6 +137,7 @@ end
 #############################################################################
 # Install build tools
 include_recipe 'build-essential::default'
+package 'pkg-config'
 
 #############################################################################
 # Build latest Tmux
