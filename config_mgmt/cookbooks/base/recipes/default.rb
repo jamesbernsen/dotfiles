@@ -201,6 +201,10 @@ npm_package "leasot"
 npm_package "npx"
 
 #############################################################################
+# Fitbit CLI dependencies
+package 'libsecret-1-0'
+
+#############################################################################
 # Nice-to-haves
 package 'tree' do
   ignore_failure true
