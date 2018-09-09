@@ -2,8 +2,8 @@
 Personal environment preferences and settings, mostly for Ubuntu, Cygwin, and WSL.
 
 
-## Install
-Install the dotfiles by cloning the Git repository and running the dotbot install script:
+## Getting Started 
+Install the dotfiles by cloning the Git repository and running the install script:
 
     git clone https://github.com/jamesb/dotfiles.git ~/dotfiles
     cd ~/dotfiles
@@ -14,7 +14,7 @@ Install the dotfiles by cloning the Git repository and running the dotbot instal
     ./install foo
 
 ## Configuration Management
-If this is a new machine and requires software installation, then also:
+If this is a new machine and requires software installation, then let Chef do some magic: 
 
     cd config_mgmt
     sudo ./config.sh
@@ -51,12 +51,15 @@ Security concerns prevent these items from residing in the repo:
 * SSH keys
 * AWS credentials file
 
-## Additional resources
+## Additional References
 * [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 * [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
 * [Solarized Color Theme for GNU ls](https://github.com/seebi/dircolors-solarized)
 
 ## Credits
-* Structure and content largely borrowed from [Lars Kappert's dotfiles](https://github.com/webpro/dotfiles)
+This would have been much more difficult without these fine folks and their tools:
+* (Dotbot)[https://git.io/dotbot] - A tool that bootstraps your dotfiles
+* (Chef)[https://chef.io/chef] - Configuration management
+* File structure and content largely borrowed from [Lars Kappert's dotfiles](https://github.com/webpro/dotfiles)
 * Many thanks to the [dotfiles community](https://dotfiles.github.io/).
 
