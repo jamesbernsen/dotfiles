@@ -9,9 +9,8 @@ set nocompatible
 set backup
 set backupdir=~/.vim/backup//,/tmp
 
-" Keep a swap file
-set swapfile
-set directory=~/.vim/swap//,/tmp
+" Turn off swap files
+set noswapfile
 
 " Keep an undo file (undo changes after closing)
 set undofile
