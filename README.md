@@ -9,11 +9,11 @@ Install the dotfiles by cloning the Git repository and running the install scrip
     cd ~/dotfiles
     ./install
 
-(When running the install script, optional targets can be added, if a YAML config file exists for them. That is, for target **foo**, a **foo.config.yaml** file must exist in the base directory.)
+When running the install script, optional targets can be added, if a YAML config file exists for them. That is, for target **foo**, a **foo.config.yaml** file must exist in the base directory. (Platform-specific YAML configs will be automatically run by the install script if the platform is detected.)
 
     ./install foo
 
-## Configuration Management
+### Configuration Management
 If this is a new machine and requires software installation, then let Chef do some magic: 
 
     cd config_mgmt
@@ -51,6 +51,21 @@ Security concerns prevent these items from residing in the repo:
 * SSH keys
 * AWS credentials file
 
+## Structure
+Summary of significant directories in these dotfiles
+```
+├── config_mgmt       Chef cookbooks for configuration management
+├── dotbot            Dotfiles bootstrapper
+├── extra             For machine-specific startup files not committed to this repo
+├── fonts             Monospaced terminal fonts
+├── git               Configuration, templates, and hooks for git
+├── platforms         Platform-detection script and platform-specific directories
+├── runcom            Shell, tmux, and vim rc files
+├── system            CLI artifacts - aliases, env vars, path, prompt, shell functions, etc.
+├── tmux              Tmux plugins and directories
+└── vim               Vim plugins and directories
+```
+
 ## Additional References
 * [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 * [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
@@ -58,8 +73,8 @@ Security concerns prevent these items from residing in the repo:
 
 ## Credits
 This would have been much more difficult without these fine folks and their tools:
-* (Dotbot)[https://git.io/dotbot] - A tool that bootstraps your dotfiles
-* (Chef)[https://chef.io/chef] - Configuration management
+* [Dotbot](https://git.io/dotbot) - A tool that bootstraps your dotfiles
+* [Chef](https://chef.io/chef) - Configuration management
 * File structure and content largely borrowed from [Lars Kappert's dotfiles](https://github.com/webpro/dotfiles)
 * Many thanks to the [dotfiles community](https://dotfiles.github.io/).
 
