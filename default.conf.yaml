@@ -15,6 +15,8 @@
         path: runcom/bashrc
     ~/bin:
         path: extra/bin
+    ~/bin/fitflow:
+        path: fitbit/fitflow.sh
     ~/bin/mdtodo:
         path: git/mdtodo.sh
     ~/.aws/config:
