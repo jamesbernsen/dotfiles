@@ -1,0 +1,25 @@
+# Kakoune runcom file
+# James Bernsen
+ 
+#############################################################################
+# Preferences
+#############################################################################
+ 
+# Disable Clippy in help boxes
+set global ui_options ncurses_assistant=none
+ 
+ 
+#############################################################################
+# These are "kak isn't vim" training extensions.
+#############################################################################
+
+map global normal 0 ':zero "echo Did you mean alt-h ?"<ret>'
+define-command zero -params 1 %{ evaluate-commands %sh{
+  if [ $kak_count = 0 ]; then
+    echo "$1"
+  else
+    echo "exec ${kak_count}0"
+  fi
+}}
+
+#map global normal 0 ':kludge-zero "echo Did you mean alt-h ?" "%val{count}"<ret>'
