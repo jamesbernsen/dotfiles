@@ -27,6 +27,8 @@
         path: git/gitignore
     ~/.git-templates:
         path: git/templates
+    ~/.inputrc:
+        path: runcom/inputrc
     ~/.marvim:
         path: marvim
     ~/.tmux:

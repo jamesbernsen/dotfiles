@@ -59,3 +59,29 @@ colors() {
   echo -e ${o:${#o}-3:3} $(tput setaf $i;tput setab $i)${Y// /=}$X;
   done
 }
+
+
+# Train yourself to run 'kak' instead of 'vim' :-)
+vim2kak() {
+  echo "BZZZT!! Press 'k' if you really meant 'kak' instead!"
+  if ~/dotfiles/system/escape-hatch.sh 3 k ; then
+    echo "Launching kak..."
+    kak $@
+  else
+    echo "Launching vim..."
+    vim $@
+  fi
+}
+
+
+# When no server name is specified for kak, start Kakoune as a client on the
+# default server (or start the default server, if it doesn't yet exist.)
+kak_default_server() {
+  # If a server name is specified with -c or -s, then don't use the default server at all.
+  if [[ ($# -gt 0) && ( "${@#/-s/}" = "$@" || "${@#/-c/}" = "$@" ) ]] ; then
+    kak $@
+  elif ! kak -c default $@ ; then
+    printf "Starting default server...\n"
+    kak -s default $@
+  fi
+}
