@@ -11,7 +11,7 @@ set global ui_options ncurses_assistant=none
 # Color scheme
 colorscheme solarized-dark-termcolors
 
-# Identing and tabs
+# Indenting and tabs
 hook global InsertChar \t %{ exec -draft -itersel h@ }
 set global tabstop 2
 set global indentwidth 2
