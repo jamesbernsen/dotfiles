@@ -77,11 +77,27 @@ vim2kak() {
 # When no server name is specified for kak, start Kakoune as a client on the
 # default server (or start the default server, if it doesn't yet exist.)
 kak_default_server() {
-  # If a server name is specified with -c or -s, then don't use the default server at all.
-  if [[ ($# -gt 0) && ( "${@#/-s/}" = "$@" || "${@#/-c/}" = "$@" ) ]] ; then
+  # Get command-line options
+  OPTIND=1
+  while getopts ":c:s:" opt; do
+  case "${opt}" in
+    c|s)
+      local kak_server_name=${OPTARG}
+      ;;
+    ?) # allow other options to pass through without error
+      ;;
+    esac
+  done
+
+
+  if [[ ! -z "${kak_server_name}" ]] ; then
+    # If a server name is specified with -c or -s, then don't use the default
+    # server at all.
     kak $@
-  elif ! kak -c default $@ ; then
-    printf "Starting default server...\n"
+  elif kak -c default $@ ; then
+    : # Do nothing (successfully connected to default server)
+  else
+    # Connect failed... start the default server
     kak -s default $@
   fi
 }
