@@ -4,9 +4,9 @@
 # Default permissions to 0644
 umask 022
 
-# Set vim-like shell
-export EDITOR=vim
-export VISUAL=${EDITOR}
+# Set kak as interactive editor
+export VISUAL=kak
+# Set kak-like bash readline bindings (in conjunction with ../runcom/inputrc)
 set -o vi
 
 
