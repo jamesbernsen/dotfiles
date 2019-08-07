@@ -74,7 +74,7 @@ vim2kak() {
 }
 
 
-# When no server name is specified for kak, start Kakoune as a client on the
+# When no session name is specified for kak, start Kakoune as a client on the
 # default server (or start the default server, if it doesn't yet exist.)
 kak_default_server() {
   # Get command-line options
@@ -82,22 +82,34 @@ kak_default_server() {
   while getopts ":c:s:" opt; do
   case "${opt}" in
     c|s)
-      local kak_server_name=${OPTARG}
+      local arg_session_name=${OPTARG}
       ;;
     ?) # allow other options to pass through without error
       ;;
     esac
   done
 
+  # Clear dead sessions
+  kak -clear
 
-  if [[ ! -z "${kak_server_name}" ]] ; then
-    # If a server name is specified with -c or -s, then don't use the default
-    # server at all.
+  # Start kak with the specified session name or a default
+  if [[ ! -z "${arg_session_name}" ]] ; then
+    # If a session name is specified with -c or -s, then don't use the default
+    # session at all.
     kak $@
-  elif kak -c default $@ ; then
-    : # Do nothing (successfully connected to default server)
   else
-    # Connect failed... start the default server
-    kak -s default $@
+    # Determine default sesion name from tmux window, if possible
+    local default_session_name=$(tmux display-message -p '#W' 2> /dev/null)
+    if [[ -z "${default_session_name}" ]] ; then
+      default_session_name=default
+    fi
+
+    if kak -c ${default_session_name} $@ ; then
+    : # Do nothing (successfully connected to default session)
+    else
+      # Connect failed... start the default session and connect again
+      kak -d -s ${default_session_name} $@
+      kak -c ${default_session_name} $@
+    fi
   fi
 }
