@@ -31,6 +31,10 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 
+# Allow cd to directly change to children of these dirs:
+export CDPATH=~/repos:~/winhome
+
+
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
